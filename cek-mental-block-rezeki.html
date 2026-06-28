@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Tes Mental Block Rezeki DARMA™ | Tes Gratis Hambatan Bawah Sadar Finansial</title>
+<meta name="description" content="Tes gratis 3-5 menit untuk mengetahui seberapa besar hambatan bawah sadar yang memengaruhi rezeki Anda. Dapatkan profil dan analisis personal dari DARMA Hipnoterapi." />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Tes Mental Block Rezeki DARMA™" />
+<meta property="og:description" content="Apakah hambatan finansial Anda hanya soal strategi, atau ada pola bawah sadar yang memengaruhi cara Anda berpikir tentang uang? Cari tahu dalam 3-5 menit." />
+<meta property="og:type" content="website" />
+
+<style>
+  :root{
+    --sage-deep:#4F6B58;
+    --sage-muted:#A1B49A;
+    --cream:#F2EEE6;
+    --beige:#CDB9A3;
+    --charcoal:#2D3A34;
+    --white:#FFFFFF;
+    --error:#B5544A;
+    --radius:18px;
+    --shadow: 0 10px 30px rgba(45,58,52,0.08);
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height:1.6;
+  }
+
+  h1,h2,h3{
+    font-family:'Playfair Display', Georgia, serif;
+    font-weight:600;
+    color: var(--charcoal);
+    margin: 0 0 0.5em 0;
+  }
+
+  .wrap{
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* progress bar fixed top */
+  .progress-track{
+    position: fixed;
+    top:0; left:0; right:0;
+    height:5px;
+    background: rgba(161,180,154,0.25);
+    z-index: 999;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background: var(--sage-deep);
+    transition: width .25s ease;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 64px 0 40px 0;
+    text-align:center;
+  }
+  .hero .eyebrow{
+    display:inline-block;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    background: rgba(161,180,154,0.22);
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .hero h1{
+    font-size: 32px;
+    line-height:1.25;
+    margin-bottom: 16px;
+  }
+  .hero p.lead{
+    font-size:16px;
+    color:#4a544e;
+    max-width: 560px;
+    margin: 0 auto 28px auto;
+  }
+  .meta-row{
+    display:flex;
+    justify-content:center;
+    gap: 18px;
+    flex-wrap:wrap;
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: var(--sage-deep);
+  }
+  .meta-row span{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background: var(--sage-deep);
+    color: var(--white);
+    border:none;
+    padding: 16px 32px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight:600;
+    cursor:pointer;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    box-shadow: var(--shadow);
+    text-decoration:none;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn:hover{ transform: translateY(-2px); background:#42594c; }
+  .btn:active{ transform: translateY(0); }
+  .btn.full{ width:100%; }
+  .btn.wa{ background:#3FA66B; }
+  .btn.wa:hover{ background:#36905c; }
+  .btn:disabled{ background:#b9c2bd; cursor:not-allowed; transform:none; }
+
+  .hero-card{
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    text-align:left;
+    margin-top: 20px;
+  }
+  .hero-card ul{ margin:0; padding-left: 0; list-style:none; }
+  .hero-card li{
+    display:flex;
+    gap:10px;
+    margin-bottom:10px;
+    font-size:15px;
+    color: var(--charcoal);
+  }
+  .hero-card li:last-child{ margin-bottom:0; }
+  .hero-card .check{ color: var(--sage-deep); font-weight:700; }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding: 36px 0; }
+  .section-title{
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  .section-sub{
+    color:#5b655f;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  /* ---------- QUESTIONS ---------- */
+  #quiz-section{ display:none; }
+  .scale-hint{
+    display:flex;
+    justify-content:space-between;
+    font-size: 12px;
+    color:#7a8580;
+    margin: 0 4px 26px 4px;
+  }
+  .question-card{
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 22px 22px 20px 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 14px rgba(45,58,52,0.05);
+    border: 1px solid transparent;
+    transition: border-color .2s ease;
+  }
+  .question-card.answered{ border-color: var(--sage-muted); }
+  .question-card .qnum{
+    font-size: 12px;
+    color: var(--sage-deep);
+    font-weight:700;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    display:block;
+  }
+  .question-card p.qtext{
+    font-size: 16px;
+    margin: 0 0 16px 0;
+    color: var(--charcoal);
+  }
+  .scale-row{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  .scale-opt{
+    position:relative;
+  }
+  .scale-opt input{
+    position:absolute;
+    opacity:0;
+    width:100%;
+    height:100%;
+    cursor:pointer;
+    margin:0;
+  }
+  .scale-opt label{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    border:1.5px solid #e3ddd2;
+    border-radius:12px;
+    padding: 10px 4px;
+    font-size: 12px;
+    color:#8a9088;
+    cursor:pointer;
+    transition: all .15s ease;
+    text-align:center;
+    min-height: 56px;
+  }
+  .scale-opt label .num{
+    font-size:15px;
+    font-weight:700;
+    color: var(--charcoal);
+  }
+  .scale-opt input:checked + label{
+    border-color: var(--sage-deep);
+    background: rgba(161,180,154,0.18);
+  }
+  .scale-opt input:checked + label .num{ color: var(--sage-deep); }
+
+  .sticky-cta{
+    position: sticky;
+    bottom: 16px;
+    margin-top: 24px;
+    z-index: 10;
+  }
+  .sticky-cta-inner{
+    background: var(--white);
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 10px 30px rgba(45,58,52,0.18);
+  }
+  .progress-label{
+    text-align:center;
+    font-size:13px;
+    color: var(--sage-deep);
+    margin-bottom: 10px;
+    font-weight:600;
+  }
+
+  /* ---------- LEAD FORM ---------- */
+  #lead-section{ display:none; }
+  .form-card{
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
+  }
+  .field{ margin-bottom: 18px; }
+  .field label{
+    display:block;
+    font-size: 13px;
+    font-weight:600;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .field input, .field select{
+    width:100%;
+    padding: 13px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #e3ddd2;
+    font-size: 15px;
+    font-family:'Inter', sans-serif;
+    color: var(--charcoal);
+    background:#fcfbf8;
+  }
+  .field input:focus, .field select:focus{
+    outline:none;
+    border-color: var(--sage-deep);
+  }
+  .field.error input, .field.error select{ border-color: var(--error); }
+  .field .err-msg{
+    color: var(--error);
+    font-size: 12px;
+    margin-top: 4px;
+    display:none;
+  }
+  .field.error .err-msg{ display:block; }
+  .privacy-note{
+    font-size: 12px;
+    color:#8a9088;
+    margin-top: -4px;
+    margin-bottom: 18px;
+  }
+
+  /* ---------- RESULT ---------- */
+  #result-section{ display:none; }
+  .result-card{
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px 26px;
+    box-shadow: var(--shadow);
+    text-align:center;
+  }
+  .score-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width: 120px;
+    height:120px;
+    border-radius:50%;
+    background: conic-gradient(var(--sage-deep) calc(var(--pct,0)*1%), #e9e4d8 0);
+    margin: 0 auto 18px auto;
+    position:relative;
+  }
+  .score-badge::before{
+    content:'';
+    position:absolute;
+    width:96px; height:96px;
+    background: var(--white);
+    border-radius:50%;
+  }
+  .score-badge .score-num{
+    position:relative;
+    font-size: 28px;
+    font-weight:700;
+    font-family:'Playfair Display', serif;
+    color: var(--charcoal);
+  }
+  .kategori-pill{
+    display:inline-block;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight:700;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    margin-bottom: 18px;
+  }
+  .kategori-rendah{ background:#E4EEE0; color:#3F6B45; }
+  .kategori-sedang{ background:#FBE9CF; color:#9A6A1E; }
+  .kategori-tinggi{ background:#F5DCD8; color:#A6453A; }
+
+  .profile-name{
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+  .profile-desc{
+    color:#5b655f;
+    font-size:15px;
+    max-width: 480px;
+    margin: 0 auto 22px auto;
+  }
+  .insight-box{
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 18px 20px;
+    text-align:left;
+    margin-bottom: 22px;
+  }
+  .insight-box p{ margin:0 0 10px 0; font-size: 14px; color:#3f4a44; }
+  .insight-box p:last-child{ margin-bottom:0; }
+  .dim-bars{ text-align:left; margin-bottom: 24px; }
+  .dim-row{ margin-bottom: 12px; }
+  .dim-row .dim-label{
+    display:flex;
+    justify-content:space-between;
+    font-size: 13px;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+    font-weight:600;
+  }
+  .dim-track{
+    height:8px;
+    border-radius: 999px;
+    background:#e9e4d8;
+    overflow:hidden;
+  }
+  .dim-fill{
+    height:100%;
+    background: var(--sage-deep);
+    border-radius:999px;
+  }
+
+  footer{
+    text-align:center;
+    padding: 30px 0 50px 0;
+    font-size: 12px;
+    color:#8a9088;
+  }
+
+  @media (max-width: 420px){
+    .hero h1{ font-size: 26px; }
+    .scale-row{ grid-template-columns: repeat(5, 1fr); gap: 5px; }
+    .scale-opt label{ font-size: 10px; padding: 8px 2px; min-height:48px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero-section">
+    <span class="eyebrow">DARMA Hipnoterapi</span>
+    <h1>Tes Mental Block Rezeki™</h1>
+    <p class="lead">Apakah hambatan finansial Anda hanya soal strategi — atau ada pola bawah sadar yang tanpa disadari memengaruhi cara Anda berpikir dan bertindak terhadap uang?</p>
+
+    <div class="meta-row">
+      <span>⏱️ 3–5 menit</span>
+      <span>🆓 100% Gratis</span>
+      <span>📊 Hasil langsung</span>
+    </div>
+
+    <button class="btn full" onclick="startQuiz()">Mulai Tes Sekarang</button>
+
+    <div class="hero-card">
+      <ul>
+        <li><span class="check">✓</span> 20 pertanyaan singkat berbasis 5 dimensi psikologis finansial</li>
+        <li><span class="check">✓</span> Hasil berupa profil personal, bukan sekadar angka</li>
+        <li><span class="check">✓</span> Analisis hambatan bawah sadar yang relevan dengan kondisi Anda</li>
+        <li><span class="check">✓</span> Rekomendasi langkah berikutnya dari tim DARMA</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section id="quiz-section">
+    <h2 class="section-title">Jawab Sesuai Kondisi Anda Saat Ini</h2>
+    <p class="section-sub">Tidak ada jawaban benar atau salah. Jawab secara jujur untuk hasil yang paling akurat.</p>
+    <div class="scale-hint">
+      <span>1 = Sangat Tidak Setuju</span>
+      <span>5 = Sangat Setuju</span>
+    </div>
+
+    <div id="questions-container"></div>
+
+    <div class="sticky-cta">
+      <div class="sticky-cta-inner">
+        <div class="progress-label" id="answeredLabel">0 dari 20 terjawab</div>
+        <button class="btn full" id="toLeadBtn" disabled onclick="goToLeadForm()">Lihat Hasil Saya</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LEAD FORM ============ -->
+  <section id="lead-section">
+    <h2 class="section-title">Satu Langkah Lagi</h2>
+    <p class="section-sub">Isi data berikut untuk melihat hasil tes dan analisis personal Anda.</p>
+
+    <div class="form-card">
+      <div class="field" id="f-nama">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" placeholder="Nama Anda" />
+        <div class="err-msg">Nama wajib diisi</div>
+      </div>
+
+      <div class="field" id="f-wa">
+        <label for="wa">Nomor WhatsApp</label>
+        <input type="tel" id="wa" placeholder="08xxxxxxxxxx" />
+        <div class="err-msg">Nomor WhatsApp wajib diisi dengan benar</div>
+      </div>
+
+      <div class="field" id="f-email">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="nama@email.com" />
+        <div class="err-msg">Email wajib diisi dengan benar</div>
+      </div>
+
+      <div class="field" id="f-job">
+        <label for="job">Pekerjaan</label>
+        <select id="job">
+          <option value="">Pilih salah satu</option>
+          <option>Karyawan</option>
+          <option>Pengusaha</option>
+          <option>Freelancer</option>
+          <option>Trader</option>
+          <option>Profesional</option>
+          <option>Mahasiswa</option>
+          <option>Lainnya</option>
+        </select>
+        <div class="err-msg">Silakan pilih pekerjaan Anda</div>
+      </div>
+
+      <div class="field" id="f-keluhan">
+        <label for="keluhan">Keluhan Finansial Utama Saat Ini</label>
+        <select id="keluhan">
+          <option value="">Pilih salah satu</option>
+          <option>Penghasilan tidak stabil</option>
+          <option>Hutang</option>
+          <option>Bisnis sepi</option>
+          <option>Sulit mendapatkan klien</option>
+          <option>Sering cemas soal uang</option>
+          <option>Sulit menabung</option>
+          <option>Lainnya</option>
+        </select>
+        <div class="err-msg">Silakan pilih keluhan utama Anda</div>
+      </div>
+
+      <p class="privacy-note">Data Anda hanya digunakan untuk memberikan hasil tes dan konsultasi dari tim DARMA. Tidak akan dibagikan ke pihak lain.</p>
+
+      <button class="btn full" id="submitBtn" onclick="submitLead()">Lihat Hasil Tes Saya</button>
+    </div>
+  </section>
+
+  <!-- ============ RESULT ============ -->
+  <section id="result-section">
+    <div class="result-card">
+      <div class="score-badge" id="scoreBadge" style="--pct:0;">
+        <span class="score-num" id="scoreNum">0</span>
+      </div>
+      <div id="kategoriPill" class="kategori-pill kategori-rendah">Hambatan Ringan</div>
+
+      <h3 class="profile-name" id="profileName">The Worrier</h3>
+      <p class="profile-desc" id="profileDesc">Deskripsi profil akan muncul di sini.</p>
+
+      <div class="insight-box" id="insightBox">
+        <p id="insightText1"></p>
+        <p id="insightText2"></p>
+      </div>
+
+      <div class="dim-bars" id="dimBars"></div>
+
+      <a class="btn wa full" id="waBtn" href="#" target="_blank" rel="noopener">
+        🟢 Konsultasikan Hasil Saya via WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    DARMA Hipnoterapi · Emotional Healing & Subconscious Transformation<br/>
+    Jl. Pager Gunung No. 1, Lebakgede, Coblong, Kota Bandung
+  </footer>
+
+</div>
+
+<script>
+/* ============================================================
+   KONFIGURASI — UBAH BAGIAN INI SESUAI KEBUTUHAN
+   ============================================================ */
+const CONFIG = {
+  WA_NUMBER: "6287828827575", // format internasional tanpa + dan tanpa 0 di depan
+  GAS_URL: "https://script.google.com/macros/s/AKfycbztbT39hkJfQhU79dWi3d1F1TXbF9dIljCb0pf7YG3XM9mF8yIC4iNZvmRP-e-jAjM/exec", // ganti dengan URL deployment Apps Script
+  TEST_NAME: "Mental Block Rezeki"
+};
+
+/* ============================================================
+   DATA PERTANYAAN — 5 dimensi x 4 pertanyaan = 20 soal
+   ============================================================ */
+const QUESTIONS = [
+  { id: 1, dim: "fear",      text: "Saya sering khawatir kehabisan uang." },
+  { id: 2, dim: "fear",      text: "Saya merasa sulit mempertahankan uang yang sudah saya peroleh." },
+  { id: 3, dim: "fear",      text: "Saya khawatir kehilangan apa yang sudah saya miliki." },
+  { id: 4, dim: "fear",      text: "Saya sering cemas ketika memikirkan kondisi keuangan." },
+
+  { id: 5, dim: "worth",     text: "Saya merasa orang lain lebih pantas sukses daripada saya." },
+  { id: 6, dim: "worth",     text: "Saya merasa bersalah ketika memiliki uang lebih banyak dari orang lain." },
+  { id: 7, dim: "worth",     text: "Saya merasa tidak layak menerima kelimpahan." },
+  { id: 8, dim: "worth",     text: "Saya sering merasa tidak cukup meskipun sudah memiliki sesuatu." },
+
+  { id: 9, dim: "confidence",text: "Saya sering meragukan kemampuan diri untuk berkembang secara finansial." },
+  { id:10, dim: "confidence",text: "Saya kesulitan menentukan harga atas jasa atau produk yang saya tawarkan." },
+  { id:11, dim: "confidence",text: "Saya takut ditolak ketika menawarkan sesuatu kepada orang lain." },
+  { id:12, dim: "confidence",text: "Saya takut membuat kesalahan dalam keputusan finansial." },
+
+  { id:13, dim: "scarcity",  text: "Saya merasa harus bekerja sangat keras untuk mendapatkan uang." },
+  { id:14, dim: "scarcity",  text: "Saya sering membandingkan kondisi finansial saya dengan orang lain." },
+  { id:15, dim: "scarcity",  text: "Saya merasa peluang sukses hanya untuk orang tertentu." },
+  { id:16, dim: "scarcity",  text: "Saya merasa ada pola yang terus berulang dalam masalah keuangan saya." },
+
+  { id:17, dim: "avoidance", text: "Saya sering menunda keputusan penting terkait keuangan." },
+  { id:18, dim: "avoidance", text: "Saya sering menghindari melihat kondisi keuangan saya secara jujur." },
+  { id:19, dim: "avoidance", text: "Saya mudah kehilangan motivasi ketika hasil belum terlihat." },
+  { id:20, dim: "avoidance", text: "Saya sering menunda mengambil peluang karena khawatir gagal." }
+];
+
+const DIM_LABELS = {
+  fear: "Fear of Loss (Takut Kehilangan)",
+  worth: "Self Worth (Rasa Layak Menerima)",
+  confidence: "Financial Confidence (Percaya Diri Finansial)",
+  scarcity: "Scarcity Mindset (Mindset Kekurangan)",
+  avoidance: "Action Avoidance (Menghindari Tindakan)"
+};
+
+/* ============================================================
+   PROFIL DOMINAN — ditentukan dari dimensi dengan skor tertinggi
+   ============================================================ */
+const PROFILES = {
+  fear: {
+    name: "The Worrier",
+    desc: "Anda cenderung dibayangi rasa khawatir kehilangan apa yang sudah Anda miliki, sehingga sering merasa belum aman secara finansial meskipun keadaan sebenarnya cukup stabil.",
+    insight: "Pola ini biasanya bukan soal kemampuan menghasilkan uang, melainkan rasa aman yang belum sepenuhnya terbentuk secara emosional."
+  },
+  worth: {
+    name: "The Self-Doubter",
+    desc: "Anda memiliki kemampuan, namun sering meragukan apakah Anda benar-benar layak menerima kelimpahan dan keberhasilan yang lebih besar.",
+    insight: "Keyakinan bawah sadar tentang kelayakan diri sering menjadi pengendali tak terlihat di balik keputusan finansial sehari-hari."
+  },
+  confidence: {
+    name: "The Hesitator",
+    desc: "Anda sering ragu mengambil langkah dalam hal finansial — menawarkan harga, mengambil peluang, atau membuat keputusan — karena takut salah atau ditolak.",
+    insight: "Keraguan ini umumnya berakar dari pengalaman masa lalu yang membuat Anda berhati-hati secara berlebihan."
+  },
+  scarcity: {
+    name: "The Scarcity Thinker",
+    desc: "Anda cenderung melihat dunia dari sudut pandang kekurangan, merasa harus berjuang sangat keras dan sulit merasa cukup secara finansial.",
+    insight: "Mindset ini sering terbentuk dari pengalaman atau lingkungan yang menanamkan keyakinan bahwa rezeki itu terbatas dan harus diperebutkan."
+  },
+  avoidance: {
+    name: "The Avoider",
+    desc: "Anda cenderung menunda atau menghindari menghadapi kondisi keuangan secara langsung, yang justru membuat masalah terasa lebih besar dari yang sebenarnya.",
+    insight: "Menghindar biasanya adalah cara bawah sadar untuk menghindari rasa cemas — namun ini sering memperpanjang siklus yang sama."
+  }
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let answers = {};
+let leadData = {};
+
+/* ============================================================
+   RENDER QUESTIONS
+   ============================================================ */
+function renderQuestions(){
+  const container = document.getElementById('questions-container');
+  let html = '';
+  QUESTIONS.forEach((q, idx) => {
+    html += `
+      <div class="question-card" id="qcard-${q.id}">
+        <span class="qnum">Pertanyaan ${idx+1} dari ${QUESTIONS.length}</span>
+        <p class="qtext">${q.text}</p>
+        <div class="scale-row">
+          ${[1,2,3,4,5].map(v => `
+            <div class="scale-opt">
+              <input type="radio" name="q${q.id}" id="q${q.id}_${v}" value="${v}" onchange="setAnswer(${q.id}, ${v})" />
+              <label for="q${q.id}_${v}"><span class="num">${v}</span></label>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function setAnswer(qid, value){
+  answers[qid] = value;
+  document.getElementById(`qcard-${qid}`).classList.add('answered');
+  updateProgress();
+}
+
+function updateProgress(){
+  const answeredCount = Object.keys(answers).length;
+  const total = QUESTIONS.length;
+  const pct = Math.round((answeredCount/total)*100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('answeredLabel').textContent = `${answeredCount} dari ${total} terjawab`;
+  document.getElementById('toLeadBtn').disabled = answeredCount < total;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function startQuiz(){
+  document.getElementById('hero-section').style.display = 'none';
+  document.getElementById('quiz-section').style.display = 'block';
+  renderQuestions();
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function goToLeadForm(){
+  document.getElementById('quiz-section').style.display = 'none';
+  document.getElementById('lead-section').style.display = 'block';
+  document.getElementById('progressFill').style.width = '100%';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ============================================================
+   VALIDATION + SUBMIT
+   ============================================================ */
+function validatePhone(v){
+  const cleaned = v.replace(/[\s-]/g, '');
+  return /^(0|62)8[0-9]{8,12}$/.test(cleaned);
+}
+function validateEmail(v){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+}
+
+function clearErrors(){
+  ['nama','wa','email','job','keluhan'].forEach(f => {
+    document.getElementById('f-' + f).classList.remove('error');
+  });
+}
+
+function submitLead(){
+  clearErrors();
+  let valid = true;
+
+  const nama = document.getElementById('nama').value.trim();
+  const wa = document.getElementById('wa').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const job = document.getElementById('job').value;
+  const keluhan = document.getElementById('keluhan').value;
+
+  if(nama.length < 3){ document.getElementById('f-nama').classList.add('error'); valid = false; }
+  if(!validatePhone(wa)){ document.getElementById('f-wa').classList.add('error'); valid = false; }
+  if(!validateEmail(email)){ document.getElementById('f-email').classList.add('error'); valid = false; }
+  if(!job){ document.getElementById('f-job').classList.add('error'); valid = false; }
+  if(!keluhan){ document.getElementById('f-keluhan').classList.add('error'); valid = false; }
+
+  if(!valid) return;
+
+  leadData = { nama, wa, email, job, keluhan };
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Memproses...';
+
+  const result = calculateResult();
+  sendToGoogleSheets(leadData, result);
+  showResult(result);
+}
+
+/* ============================================================
+   SCORING
+   ============================================================ */
+function calculateResult(){
+  const dims = { fear:0, worth:0, confidence:0, scarcity:0, avoidance:0 };
+  QUESTIONS.forEach(q => {
+    dims[q.dim] += (answers[q.id] || 0);
+  });
+
+  // tiap dimensi: 4 soal x skala 1-5 -> min 4, max 20
+  const totalScore = Object.values(dims).reduce((a,b) => a+b, 0); // max 100
+  const totalPct = Math.round((totalScore / 100) * 100);
+
+  let kategori, kategoriClass;
+  if(totalPct <= 45){ kategori = "Hambatan Ringan"; kategoriClass = "kategori-rendah"; }
+  else if(totalPct <= 70){ kategori = "Hambatan Sedang"; kategoriClass = "kategori-sedang"; }
+  else { kategori = "Hambatan Tinggi"; kategoriClass = "kategori-tinggi"; }
+
+  // dimensi dominan = skor tertinggi
+  let dominantDim = Object.keys(dims).reduce((a,b) => dims[a] >= dims[b] ? a : b);
+  const profile = PROFILES[dominantDim];
+
+  return { dims, totalScore: totalPct, kategori, kategoriClass, dominantDim, profile };
+}
+
+/* ============================================================
+   RENDER RESULT
+   ============================================================ */
+function showResult(result){
+  document.getElementById('lead-section').style.display = 'none';
+  document.getElementById('result-section').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  document.getElementById('scoreBadge').style.setProperty('--pct', result.totalScore);
+  document.getElementById('scoreNum').textContent = result.totalScore;
+
+  const pill = document.getElementById('kategoriPill');
+  pill.textContent = result.kategori;
+  pill.className = 'kategori-pill ' + result.kategoriClass;
+
+  document.getElementById('profileName').textContent = result.profile.name;
+  document.getElementById('profileDesc').textContent = result.profile.desc;
+  document.getElementById('insightText1').textContent = result.profile.insight;
+  document.getElementById('insightText2').textContent = `Berdasarkan hasil tes, tingkat hambatan Anda berada pada kategori "${result.kategori}". Konsultasi dengan tim DARMA dapat membantu memahami akar masalah secara lebih spesifik.`;
+
+  // dimension bars
+  const dimBarsHtml = Object.keys(result.dims).map(dim => {
+    const pct = Math.round((result.dims[dim] / 20) * 100);
+    return `
+      <div class="dim-row">
+        <div class="dim-label"><span>${DIM_LABELS[dim]}</span><span>${pct}%</span></div>
+        <div class="dim-track"><div class="dim-fill" style="width:${pct}%"></div></div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('dimBars').innerHTML = dimBarsHtml;
+
+  // WA button — pesan dibuat singkat & natural dengan line break agar nyaman dibaca di kolom chat WA
+  const waMessage = `Halo DARMA, saya ${leadData.nama}.\nSaya baru menyelesaikan Tes Mental Block Rezeki.\n\nHasil saya: ${result.profile.name}\nSkor: ${result.totalScore}/100 (${result.kategori})\n\nSaya ingin konsultasi lebih lanjut mengenai hasil ini.`;
+  const waUrl = `https://wa.me/${CONFIG.WA_NUMBER}?text=${encodeURIComponent(waMessage)}`;
+  document.getElementById('waBtn').href = waUrl;
+}
+
+/* ============================================================
+   SEND TO GOOGLE SHEETS (Apps Script)
+   ============================================================
+   Catatan teknis penting: Apps Script web app TIDAK mengirim header
+   CORS pada response-nya, dan ContentService tidak punya cara resmi
+   untuk menambahkannya. Karena itu, fetch() di browser SERINGKALI akan
+   gagal saat mencoba MEMBACA response (muncul sebagai TypeError di
+   .catch), MESKIPUN request sudah berhasil diterima dan dieksekusi
+   oleh Apps Script (appendRow ke Sheet terjadi di server SEBELUM
+   response dikirim balik ke browser).
+   Artinya: error di .catch() di sini TIDAK SELALU berarti data gagal
+   masuk ke Sheet. Untuk memastikan, kita tetap tampilkan status di
+   halaman, tapi dengan bahasa yang akurat (bukan "GAGAL" mutlak).
+   ============================================================ */
+function sendToGoogleSheets(lead, result){
+  if(!CONFIG.GAS_URL || CONFIG.GAS_URL.includes('PASTE_')){
+    showSyncStatus('warn', 'GAS_URL belum diisi — data tidak dikirim ke Google Sheets.');
+    return;
+  }
+
+  const payload = {
+    nama: lead.nama,
+    wa: lead.wa,
+    email: lead.email,
+    job: lead.job,
+    keluhan: lead.keluhan,
+    tes: CONFIG.TEST_NAME,
+    profile: result.profile.name,
+    score: result.totalScore,
+    kategori: result.kategori,
+    dim_fear: result.dims.fear,
+    dim_worth: result.dims.worth,
+    dim_confidence: result.dims.confidence,
+    dim_scarcity: result.dims.scarcity,
+    dim_avoidance: result.dims.avoidance,
+    source: document.referrer || "Direct"
+  };
+
+  fetch(CONFIG.GAS_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if(res.type === 'opaque'){
+      // Browser tidak mengizinkan baca response karena tidak ada header CORS,
+      // tapi request DEFINITELY terkirim ke server (status network: terkirim).
+      showSyncStatus('ok', 'Data terkirim ke sistem DARMA.');
+      return null;
+    }
+    return res.text();
+  })
+  .then(text => {
+    if(text === null) return; // sudah ditangani di atas (opaque response)
+    try {
+      const json = JSON.parse(text);
+      if(json.success){
+        showSyncStatus('ok', 'Data tersimpan ke sistem DARMA.');
+      } else {
+        showSyncStatus('error', 'Tersimpan tapi ada catatan dari server: ' + (json.error || 'unknown error'));
+      }
+    } catch(parseErr) {
+      showSyncStatus('warn', 'Response tidak dikenali — cek manual di Google Sheets apakah data masuk.');
+    }
+  })
+  .catch(err => {
+    // Ini murni network failure (misal: GAS_URL salah ketik, tidak ada internet,
+    // atau domain script.google.com benar2 diblokir). Request tidak terkirim sama sekali.
+    showSyncStatus('error', 'Gagal terhubung ke server. Cek koneksi internet & GAS_URL. (' + err.message + ')');
+    console.error('Gagal mengirim data ke Google Sheets:', err);
+  });
+}
+
+// Menampilkan badge kecil di pojok bawah halaman hasil, supaya status
+// pengiriman data terlihat tanpa perlu membuka Console browser sama sekali.
+function showSyncStatus(type, message){
+  let badge = document.getElementById('syncStatusBadge');
+  if(!badge){
+    badge = document.createElement('div');
+    badge.id = 'syncStatusBadge';
+    badge.style.position = 'fixed';
+    badge.style.bottom = '12px';
+    badge.style.left = '12px';
+    badge.style.right = '12px';
+    badge.style.maxWidth = '460px';
+    badge.style.margin = '0 auto';
+    badge.style.padding = '10px 14px';
+    badge.style.borderRadius = '10px';
+    badge.style.fontSize = '12px';
+    badge.style.fontFamily = 'Inter, sans-serif';
+    badge.style.zIndex = '9999';
+    badge.style.boxShadow = '0 4px 14px rgba(0,0,0,0.15)';
+    document.body.appendChild(badge);
+  }
+  const colors = {
+    ok:   { bg:'#E4EEE0', color:'#3F6B45' },
+    warn: { bg:'#FBE9CF', color:'#9A6A1E' },
+    error:{ bg:'#F5DCD8', color:'#A6453A' }
+  };
+  const c = colors[type] || colors.warn;
+  badge.style.background = c.bg;
+  badge.style.color = c.color;
+  badge.textContent = (type === 'ok' ? '✓ ' : '⚠ ') + message;
+
+  if(type === 'ok'){
+    setTimeout(() => { badge.style.display = 'none'; }, 4000);
+  }
+}
+</script>
+
+</body>
+</html>
