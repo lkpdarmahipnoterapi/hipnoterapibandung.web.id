@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HypnoCare — Ruang Curhat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ══════ TOKENS ══════ */
+:root {
+  --sage:#4F6B58; --sage-lt:#A1B49A; --cream:#F2EEE6; --beige:#CDB9A3;
+  --dark:#2D3A34; --muted:#7A8C80; --surface:#FDFAF5; --border:rgba(79,107,88,0.18);
+  --shadow:0 8px 40px rgba(45,58,52,0.10);
+  --hdr:rgba(242,238,230,0.90); --grad:radial-gradient(ellipse 80% 60% at 50% 40%,#dde8d8 0%,#F2EEE6 70%);
+}
+[data-theme=dark]{
+  --cream:#1A2420; --surface:#232F2A; --dark:#E8E0D0; --muted:#8FA898;
+  --border:rgba(161,180,154,0.15); --shadow:0 8px 40px rgba(0,0,0,0.3);
+  --hdr:rgba(26,36,32,0.93); --grad:radial-gradient(ellipse 80% 60% at 50% 40%,#1f2e28 0%,#1A2420 70%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Manrope',sans-serif;background:var(--cream);color:var(--dark);overflow:hidden;transition:background .3s,color .3s}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+
+/* ══════ SCREENS ══════ */
+.screen{position:fixed;inset:0;display:flex;flex-direction:column;z-index:1;transition:opacity .5s,transform .5s}
+.screen.hidden{opacity:0;pointer-events:none;transform:translateY(14px)}
+
+/* ══════ THEME TOGGLE ══════ */
+.theme-btn{position:fixed;top:.9rem;right:.9rem;z-index:200;background:var(--surface);border:1px solid var(--border);border-radius:50px;padding:.35rem .65rem;cursor:pointer;display:flex;align-items:center;gap:.35rem;font-size:.7rem;font-family:'Manrope',sans-serif;color:var(--muted);transition:all .2s;box-shadow:var(--shadow)}
+.theme-btn:hover{color:var(--dark)}
+.theme-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8}
+
+/* ══════ LANDING ══════ */
+#landing{align-items:center;justify-content:center;padding:2rem;background:var(--grad);overflow-y:auto}
+.landing-inner{max-width:400px;width:100%;text-align:center;animation:fadeUp 1s ease both;padding:1rem 0 2rem}
+.logo-wrap{display:inline-flex;align-items:center;gap:.75rem;margin-bottom:2.2rem}
+.logo-icon{width:46px;height:46px;background:var(--sage);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-icon svg{width:24px;height:24px;fill:none;stroke:#FDFAF5;stroke-width:1.5}
+.brand{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--dark);line-height:1;letter-spacing:.02em}
+.brand-sub{font-size:.67rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:2px;font-weight:300}
+.land-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,2.8rem);font-weight:300;line-height:1.25;margin-bottom:.9rem;color:var(--dark)}
+.land-title em{font-style:italic;color:var(--sage)}
+.land-sub{font-size:.875rem;color:var(--muted);line-height:1.75;font-weight:300;max-width:310px;margin:0 auto 2rem}
+
+.api-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:1.25rem;text-align:left}
+.api-box label{display:block;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:.5rem}
+.api-hint{font-size:.73rem;color:var(--muted);margin-bottom:.7rem;line-height:1.5;font-weight:300}
+.api-hint a{color:var(--sage);text-decoration:underline}
+.api-row{display:flex;gap:.45rem}
+.api-input{flex:1;padding:.6rem .85rem;border:1px solid var(--border);border-radius:8px;font-family:'Manrope',sans-serif;font-size:.78rem;background:var(--cream);color:var(--dark);outline:none;transition:border-color .2s}
+.api-input:focus{border-color:var(--sage)}
+.btn-save{padding:.6rem .9rem;background:var(--sage);color:#FDFAF5;border:none;border-radius:8px;font-size:.76rem;font-family:'Manrope',sans-serif;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .2s}
+.btn-save:hover{background:var(--dark)}
+.api-ok{font-size:.73rem;color:var(--sage);margin-top:.45rem;display:none}
+.api-ok.show{display:block}
+
+.btn-start{display:inline-flex;align-items:center;gap:.55rem;padding:.95rem 2rem;background:var(--sage);color:#FDFAF5;border:none;border-radius:50px;font-family:'Manrope',sans-serif;font-size:.88rem;font-weight:500;letter-spacing:.03em;cursor:pointer;transition:background .25s,transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(79,107,88,.3)}
+.btn-start:hover{background:var(--dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(79,107,88,.35)}
+.btn-start svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+.land-disc{margin-top:1.4rem;font-size:.7rem;color:var(--muted);line-height:1.65;font-weight:300}
+.land-disc a{color:var(--sage);text-decoration:none}
+
+/* ══════ CHAT ══════ */
+#chat{background:var(--cream)}
+.chat-hdr{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;background:var(--hdr);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:10;gap:.5rem}
+.hdr-left{display:flex;align-items:center;gap:.6rem;flex:1;min-width:0}
+.hdr-avatar{width:34px;height:34px;background:var(--sage);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-avatar svg{width:17px;height:17px;fill:none;stroke:#FDFAF5;stroke-width:1.5}
+.hdr-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--dark);line-height:1}
+.hdr-status{font-size:.67rem;color:var(--sage);margin-top:2px;display:flex;align-items:center;gap:4px}
+.dot{width:6px;height:6px;background:#7cb87c;border-radius:50%;animation:pulse 2s infinite}
+.hdr-right{display:flex;gap:.4rem;flex-shrink:0}
+.btn-sm{background:none;border:1px solid var(--border);border-radius:8px;padding:.4rem .7rem;font-size:.72rem;font-family:'Manrope',sans-serif;color:var(--muted);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.35rem;text-decoration:none;white-space:nowrap}
+.btn-sm:hover{background:var(--surface);color:var(--dark)}
+.btn-sm svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+.btn-wa{background:#25D366;color:#fff;border-color:#25D366}
+.btn-wa svg{fill:#fff;stroke:none}
+.btn-wa:hover{background:#1ebe5d;border-color:#1ebe5d;color:#fff}
+
+/* Messages */
+.msgs{flex:1;overflow-y:auto;padding:1.25rem 1rem 1rem;display:flex;flex-direction:column;gap:.9rem;scroll-behavior:smooth}
+.msgs::-webkit-scrollbar{width:3px}
+.msgs::-webkit-scrollbar-thumb{background:var(--sage-lt);border-radius:4px}
+
+.msg{display:flex;gap:.55rem;animation:fadeUp .35s ease both;max-width:88%}
+.msg.user{align-self:flex-end;flex-direction:row-reverse}
+.msg.ai{align-self:flex-start}
+.msg-av{width:28px;height:28px;border-radius:50%;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:.72rem}
+.msg.ai  .msg-av{background:var(--sage)}
+.msg.ai  .msg-av svg{width:14px;height:14px;fill:none;stroke:#FDFAF5;stroke-width:1.5}
+.msg.user .msg-av{background:var(--beige);color:var(--dark);font-weight:600;font-family:'Cormorant Garamond',serif}
+.bubble{padding:.72rem .95rem;border-radius:18px;font-size:.855rem;line-height:1.68;font-weight:300}
+.msg.ai  .bubble{background:var(--surface);color:var(--dark);border:1px solid var(--border);border-bottom-left-radius:4px;box-shadow:0 2px 10px rgba(45,58,52,.06)}
+.msg.user .bubble{background:var(--sage);color:#FDFAF5;border-bottom-right-radius:4px}
+
+/* Typing */
+.typing{display:flex;align-items:center;gap:.55rem;animation:fadeUp .3s ease both}
+.t-dots{display:flex;gap:4px;background:var(--surface);border:1px solid var(--border);padding:.6rem .9rem;border-radius:18px;border-bottom-left-radius:4px}
+.t-dots span{width:5px;height:5px;background:var(--sage-lt);border-radius:50%;animation:bounce 1.2s infinite}
+.t-dots span:nth-child(2){animation-delay:.2s}
+.t-dots span:nth-child(3){animation-delay:.4s}
+
+/* ══════ CTA CARD ══════ */
+.cta-card{
+  align-self:flex-start;
+  max-width:92%;
+  background:linear-gradient(135deg,#f0f4ef 0%,var(--surface) 100%);
+  border:1.5px solid var(--sage-lt);
+  border-radius:20px;
+  padding:1.25rem 1.3rem;
+  animation:fadeUp .5s ease both;
+  box-shadow:0 4px 24px rgba(79,107,88,.12);
+}
+[data-theme=dark] .cta-card{background:linear-gradient(135deg,#263028 0%,#232F2A 100%)}
+.cta-eyebrow{font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);font-weight:500;margin-bottom:.5rem}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--dark);line-height:1.3;margin-bottom:.5rem}
+.cta-body{font-size:.82rem;color:var(--muted);line-height:1.65;font-weight:300;margin-bottom:1.1rem}
+.cta-options{display:flex;flex-direction:column;gap:.6rem}
+.cta-btn{
+  display:flex;align-items:center;gap:.65rem;
+  padding:.75rem 1rem;
+  border-radius:12px;
+  border:1.5px solid var(--border);
+  background:var(--surface);
+  cursor:pointer;
+  text-decoration:none;
+  transition:all .2s;
+  font-family:'Manrope',sans-serif;
+}
+.cta-btn:hover{border-color:var(--sage);transform:translateY(-1px);box-shadow:0 4px 16px rgba(79,107,88,.15)}
+.cta-btn.primary{background:var(--sage);border-color:var(--sage)}
+.cta-btn.primary:hover{background:#3d5444}
+.cta-btn-icon{width:34px;height:34px;border-radius:8px;background:rgba(79,107,88,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cta-btn.primary .cta-btn-icon{background:rgba(255,255,255,.15)}
+.cta-btn-icon svg{width:17px;height:17px}
+.cta-btn-text .t1{font-size:.82rem;font-weight:600;color:var(--dark);line-height:1.2}
+.cta-btn.primary .cta-btn-text .t1{color:#FDFAF5}
+.cta-btn-text .t2{font-size:.72rem;color:var(--muted);font-weight:300;margin-top:1px}
+.cta-btn.primary .cta-btn-text .t2{color:rgba(253,250,245,.7)}
+.cta-skip{text-align:center;margin-top:.8rem}
+.cta-skip button{background:none;border:none;font-size:.72rem;color:var(--muted);cursor:pointer;font-family:'Manrope',sans-serif;text-decoration:underline;padding:0}
+.cta-skip button:hover{color:var(--dark)}
+
+/* Input */
+.input-area{flex-shrink:0;padding:.7rem 1rem;background:var(--hdr);backdrop-filter:blur(16px);border-top:1px solid var(--border)}
+.input-row{display:flex;align-items:flex-end;gap:.55rem;background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:.4rem .5rem .4rem .95rem;box-shadow:var(--shadow);transition:border-color .2s}
+.input-row:focus-within{border-color:var(--sage-lt)}
+#uinput{flex:1;border:none;background:transparent;font-family:'Manrope',sans-serif;font-size:.855rem;font-weight:300;color:var(--dark);resize:none;outline:none;max-height:110px;min-height:22px;line-height:1.5;padding:.28rem 0}
+#uinput::placeholder{color:var(--muted)}
+.btn-send{width:34px;height:34px;border-radius:50%;background:var(--sage);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,transform .15s}
+.btn-send:hover{background:var(--dark);transform:scale(1.06)}
+.btn-send:disabled{background:var(--sage-lt);cursor:not-allowed;transform:none}
+.btn-send svg{width:14px;height:14px;fill:none;stroke:#FDFAF5;stroke-width:2}
+
+/* ══════ KEYFRAMES ══════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+@media(max-width:480px){
+  .land-title{font-size:1.9rem}
+  .msg{max-width:95%}
+  .btn-wa span{display:none}
+  .cta-card{max-width:98%}
+}
+</style>
+</head>
+<body>
+
+<button class="theme-btn" onclick="toggleTheme()">
+  <svg id="t-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+  <svg id="t-sun" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  <span id="t-lbl">Gelap</span>
+</button>
+
+<!-- ══ LANDING ══ -->
+<div id="landing" class="screen">
+  <div class="landing-inner">
+    <div class="logo-wrap">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M12 8c0 4-4 6-4 6s0-4 4-6z" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8c0 4 4 6 4 6s0-4-4-6z" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="22" x2="12" y2="14" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="brand">DARMA Hipnoterapi</div>
+        <div class="brand-sub">Bandung · Est. 2009</div>
+      </div>
+    </div>
+
+    <h1 class="land-title">Ada apa yang<br/><em>Anda rasakan?</em></h1>
+    <p class="land-sub">Ruang yang aman untuk bercerita. Tanpa dihakimi, tanpa terburu-buru. HypnoCare siap mendengarkan.</p>
+
+    <div class="api-box">
+      <label>Anthropic API Key</label>
+      <p class="api-hint">Dapatkan key gratis di <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>. Tersimpan hanya di browser Anda.</p>
+      <div class="api-row">
+        <input id="api-input" class="api-input" type="password" placeholder="sk-ant-…" autocomplete="off"/>
+        <button class="btn-save" onclick="saveKey()">Simpan</button>
+      </div>
+      <div id="api-ok" class="api-ok">✓ API key tersimpan</div>
+    </div>
+
+    <button class="btn-start" onclick="startChat()">
+      Mulai Bercerita
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+
+    <p class="land-disc">Layanan ini bukan pengganti konsultasi profesional.<br/>
+    Krisis? Hubungi <a href="https://wa.me/6287828827575" target="_blank">DARMA Hipnoterapi</a> langsung.</p>
+  </div>
+</div>
+
+<!-- ══ CHAT ══ -->
+<div id="chat" class="screen hidden">
+  <div class="chat-hdr">
+    <div class="hdr-left">
+      <div class="hdr-avatar">
+        <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M12 8c0 4-4 6-4 6s0-4 4-6z" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8c0 4 4 6 4 6s0-4-4-6z" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="22" x2="12" y2="14" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="hdr-name">HypnoCare</div>
+        <div class="hdr-status"><span class="dot"></span> Siap mendengarkan</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <a class="btn-sm btn-wa" href="https://wa.me/6287828827575?text=Halo%20DARMA%2C%20saya%20ingin%20konsultasi%20lebih%20lanjut." target="_blank">
+        <svg viewBox="0 0 24 24" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.934 1.395 5.608L0 24l6.545-1.371A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.652-.51-5.168-1.399l-.371-.219-3.884.815.824-3.794-.24-.389A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        <span>Hubungi DARMA</span>
+      </a>
+      <button class="btn-sm" onclick="goBack()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Kembali
+      </button>
+    </div>
+  </div>
+
+  <div class="msgs" id="msgs"></div>
+
+  <div class="input-area">
+    <div class="input-row">
+      <textarea id="uinput" placeholder="Ceritakan apa yang Anda rasakan…" rows="1"
+        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="btn-send" id="send-btn" onclick="sendMsg()">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════
+let apiKey = localStorage.getItem('hc_key') || '';
+let history = [];       // { role, content }
+let busy = false;
+let ctaShown = false;   // only show CTA once per session
+
+// ══════════════════════════════════════════════════════
+//  SYSTEM PROMPT — CURHAT MODE + CTA TRIGGER
+// ══════════════════════════════════════════════════════
+const SYSTEM = `Kamu adalah HypnoCare, pendamping emosional digital dari DARMA Hipnoterapi — praktik hipnoterapi klinis premium di Bandung yang dipimpin oleh Rizal, hipnoterapis berpengalaman 15+ tahun.
+
+MISI UTAMAMU:
+Menjadi ruang curhat yang aman, hangat, dan non-judgmental. Tugasmu adalah mendengarkan, menemani, dan membantu klien merasa dipahami.
+
+CARA MERESPONS:
+- Dengarkan dulu sebelum memberi saran
+- Gunakan pertanyaan reflektif yang membuka ruang: "Sejak kapan perasaan ini muncul?", "Bagian mana yang paling berat?"
+- Validasi emosi sebelum apapun: "Wajar sekali kamu merasa seperti itu."
+- Bahasa: hangat, personal, natural seperti sahabat yang bijak — bukan konselor klinik
+- Jaga panjang respons: cukup 2–4 kalimat per giliran, kecuali diperlukan lebih
+- JANGAN memberikan diagnosis, label psikologis formal, atau nasihat agresif
+
+DETEKSI KEBUTUHAN LEBIH DALAM:
+Perhatikan tanda-tanda berikut dalam percakapan:
+- Tema yang berulang (kecemasan, trauma, hubungan, harga diri)
+- Ekspresi kelelahan emosional yang dalam ("sudah lelah", "tidak tahu harus bagaimana lagi")
+- Pola pikir yang membutuhkan restrukturisasi (overthinking kronis, inner critic kuat)
+- Masalah yang tampaknya sudah lama tersimpan dan belum pernah ditangani
+- Ketika klien mulai membuka lapisan yang lebih dalam dari sekadar keluh kesah permukaan
+
+Ketika kamu menilai percakapan sudah mencapai kedalaman emosional yang signifikan DAN klien tampaknya membutuhkan penanganan lebih dari sekadar obrolan — sisipkan kata kunci khusus ini PERSIS di dalam responmu (tersembunyi di mana saja dalam teks, boleh di tengah kalimat):
+
+[DARMA_CTA_TRIGGER]
+
+Gunakan trigger ini dengan bijak — hanya saat kamu yakin klien benar-benar akan terbantu dengan intervensi profesional. Jangan terlalu cepat, jangan terlalu lama. Biasanya setelah 4–8 pertukaran pesan yang substansial.
+
+PENTING: Setelah trigger, lanjutkan respons seperti biasa — jangan ubah tone atau tiba-tiba jadi "salesy". Biarkan UI yang akan menampilkan kartu penawaran secara terpisah.
+
+BATASAN ABSOLUT:
+- Tidak memberikan informasi yang bisa membahayakan
+- Tidak berpura-pura menjadi psikolog atau dokter
+- Jika ada tanda krisis/darurat: langsung arahkan ke WA DARMA 087828827575`;
+
+// ══════════════════════════════════════════════════════
+//  THEME
+// ══════════════════════════════════════════════════════
+function initTheme(){
+  const t = localStorage.getItem('hc_theme')||'light';
+  applyTheme(t);
+}
+function toggleTheme(){
+  applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('hc_theme',t);
+  document.getElementById('t-moon').style.display = t==='dark'?'none':'block';
+  document.getElementById('t-sun').style.display  = t==='dark'?'block':'none';
+  document.getElementById('t-lbl').textContent    = t==='dark'?'Terang':'Gelap';
+}
+
+// ══════════════════════════════════════════════════════
+//  API KEY
+// ══════════════════════════════════════════════════════
+function saveKey(){
+  const v = document.getElementById('api-input').value.trim();
+  if(!v) return;
+  apiKey = v;
+  localStorage.setItem('hc_key', v);
+  document.getElementById('api-ok').classList.add('show');
+}
+
+// ══════════════════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════════════════
+function show(id){
+  ['landing','chat'].forEach(s=>document.getElementById(s).classList.toggle('hidden',s!==id));
+}
+function startChat(){
+  if(!apiKey){ alert('Masukkan API key Anthropic Anda terlebih dahulu.'); return; }
+  history = []; ctaShown = false;
+  document.getElementById('msgs').innerHTML = '';
+  show('chat');
+  welcome();
+  document.getElementById('uinput').focus();
+}
+function goBack(){ show('landing'); }
+
+// ══════════════════════════════════════════════════════
+//  WELCOME
+// ══════════════════════════════════════════════════════
+function welcome(){
+  const texts = [
+    'Halo… selamat datang. 🌿\n\nIni ruang yang aman. Tidak ada yang perlu ditahan di sini — ceritakan saja apa yang sedang ada di hati kamu.',
+    'Selamat datang. Saya senang kamu memilih untuk berbagi hari ini. 🌱\n\nKamu tidak perlu tahu harus mulai dari mana. Ceritakan saja apa yang terasa paling berat sekarang.',
+  ];
+  const t = texts[Math.floor(Math.random()*texts.length)];
+  addBubble('ai', t);
+  history.push({ role:'assistant', content: t });
+}
+
+// ══════════════════════════════════════════════════════
+//  RENDER HELPERS
+// ══════════════════════════════════════════════════════
+const LEAF_SVG = `<svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" stroke="#FDFAF5" stroke-width="1.5" fill="none"/><path d="M12 8c0 4-4 6-4 6s0-4 4-6z" stroke="#FDFAF5" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8c0 4 4 6 4 6s0-4-4-6z" stroke="#FDFAF5" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+function addBubble(role, text){
+  const wrap = document.createElement('div');
+  wrap.className = `msg ${role}`;
+
+  const av = document.createElement('div');
+  av.className = 'msg-av';
+  av.innerHTML = role==='ai' ? LEAF_SVG : 'A';
+
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  b.style.whiteSpace = 'pre-wrap';
+  b.textContent = text;
+
+  wrap.appendChild(av); wrap.appendChild(b);
+  document.getElementById('msgs').appendChild(wrap);
+  scrollBot();
+}
+
+function showTyping(){
+  const el = document.createElement('div');
+  el.className='typing'; el.id='typing';
+  el.innerHTML=`<div class="msg-av" style="background:var(--sage);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">${LEAF_SVG}</div><div class="t-dots"><span></span><span></span><span></span></div>`;
+  document.getElementById('msgs').appendChild(el);
+  scrollBot();
+}
+function hideTyping(){ const e=document.getElementById('typing'); if(e) e.remove(); }
+function scrollBot(){ const c=document.getElementById('msgs'); c.scrollTop=c.scrollHeight; }
+
+// ══════════════════════════════════════════════════════
+//  CTA CARD
+// ══════════════════════════════════════════════════════
+function showCTA(){
+  if(ctaShown) return;
+  ctaShown = true;
+
+  const card = document.createElement('div');
+  card.className = 'cta-card';
+  card.innerHTML = `
+    <div class="cta-eyebrow">Langkah Berikutnya</div>
+    <div class="cta-title">Sepertinya kamu butuh lebih dari sekadar percakapan.</div>
+    <div class="cta-body">Apa yang kamu bawa hari ini layak mendapat penanganan yang lebih mendalam. DARMA Hipnoterapi bisa membantu kamu melalui dua cara:</div>
+    <div class="cta-options">
+      <a class="cta-btn primary" href="https://wa.me/6287828827575?text=Halo%20Kak%20Rizal%2C%20saya%20ingin%20konsultasi%20sesi%20hipnoterapi." target="_blank">
+        <div class="cta-btn-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#FDFAF5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.934 1.395 5.608L0 24l6.545-1.371A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.652-.51-5.168-1.399l-.371-.219-3.884.815.824-3.794-.24-.389A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        </div>
+        <div class="cta-btn-text">
+          <div class="t1">Sesi 1-on-1 dengan Rizal</div>
+          <div class="t2">Konsultasi langsung via WhatsApp · Segera dijawab</div>
+        </div>
+      </a>
+      <a class="cta-btn" href="https://darmahipnoterapi.com" target="_blank">
+        <div class="cta-btn-icon" style="background:rgba(79,107,88,.1)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--sage)" stroke="none"/></svg>
+        </div>
+        <div class="cta-btn-text">
+          <div class="t1" style="color:var(--dark)">Audio Hipnoterapi</div>
+          <div class="t2">Dengarkan kapan saja · Bantu subconscious healing</div>
+        </div>
+      </a>
+    </div>
+    <div class="cta-skip"><button onclick="dismissCTA(this)">Lanjutkan bercerita dulu</button></div>
+  `;
+
+  document.getElementById('msgs').appendChild(card);
+  scrollBot();
+}
+
+function dismissCTA(btn){
+  btn.closest('.cta-card').style.opacity = '.4';
+  btn.closest('.cta-card').style.pointerEvents = 'none';
+  addBubble('ai', 'Tentu, tidak ada yang terburu-buru. 🌿 Saya tetap di sini. Lanjutkan ceritamu.');
+}
+
+// ══════════════════════════════════════════════════════
+//  SEND MESSAGE
+// ══════════════════════════════════════════════════════
+async function sendMsg(){
+  if(busy) return;
+  const inp = document.getElementById('uinput');
+  const text = inp.value.trim();
+  if(!text) return;
+
+  inp.value=''; autoResize(inp);
+  addBubble('user', text);
+  history.push({ role:'user', content:text });
+
+  busy=true;
+  document.getElementById('send-btn').disabled=true;
+  showTyping();
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true',
+      },
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1024,
+        system: SYSTEM,
+        messages: history,
+      })
+    });
+
+    if(!res.ok){ const e=await res.json(); throw new Error(e.error?.message||`HTTP ${res.status}`); }
+
+    const data = await res.json();
+    let reply = data.content?.[0]?.text || '…';
+
+    // Detect & strip CTA trigger
+    const hasTrigger = reply.includes('[DARMA_CTA_TRIGGER]');
+    reply = reply.replace('[DARMA_CTA_TRIGGER]','').trim();
+
+    hideTyping();
+    addBubble('ai', reply);
+    history.push({ role:'assistant', content: reply });
+
+    if(hasTrigger && !ctaShown){
+      setTimeout(()=> showCTA(), 600);
+    }
+
+  } catch(err){
+    hideTyping();
+    let msg='⚠️ ';
+    if(err.message.includes('401')||err.message.toLowerCase().includes('auth'))
+      msg+='API key tidak valid. Periksa kembali di halaman utama.';
+    else if(err.message.includes('429'))
+      msg+='Terlalu banyak permintaan. Tunggu sebentar lalu coba lagi.';
+    else msg+=err.message;
+    addBubble('ai', msg);
+    history.pop();
+  } finally {
+    busy=false;
+    document.getElementById('send-btn').disabled=false;
+    document.getElementById('uinput').focus();
+  }
+}
+
+function handleKey(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendMsg(); } }
+function autoResize(el){ el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,110)+'px'; }
+
+// ══════════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════════
+window.onload=()=>{
+  initTheme();
+  if(apiKey){
+    document.getElementById('api-input').value=apiKey;
+    document.getElementById('api-ok').classList.add('show');
+  }
+};
+</script>
+</body>
+</html>
