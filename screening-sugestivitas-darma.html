@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screening Klien & Tes Sugestivitas — DARMA Hipnoterapi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage-deep:#4F6B58;
+    --sage-muted:#A1B49A;
+    --cream:#F2EEE6;
+    --beige:#CDB9A3;
+    --charcoal:#2D3A34;
+    --ink:#2D3A34;
+    --paper:#FBF9F5;
+    --line: rgba(45,58,52,0.14);
+    --shadow: 0 18px 50px -12px rgba(45,58,52,0.18);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--cream);
+    color: var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(161,180,154,0.35), transparent 45%),
+      radial-gradient(circle at 90% 88%, rgba(205,185,163,0.30), transparent 50%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .app{ position:relative; z-index:1; max-width:760px; margin:0 auto; padding: 48px 24px 90px; }
+
+  /* ---------- Masthead ---------- */
+  .masthead{ text-align:center; margin-bottom:40px; }
+  .mark{
+    width:54px; height:54px; margin:0 auto 18px;
+    border:1.5px solid var(--sage-deep);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display', serif;
+    font-size:22px; color:var(--sage-deep);
+    background: var(--paper);
+  }
+  .masthead .eyebrow{
+    font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600; margin-bottom:10px;
+  }
+  .masthead h1{
+    font-family:'Playfair Display', serif;
+    font-weight:600;
+    font-size: clamp(26px,4.6vw,36px);
+    margin:0 0 10px;
+    color:var(--charcoal);
+    line-height:1.2;
+  }
+  .masthead p{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:18px;
+    color:#5b6b62;
+    margin:0;
+  }
+
+  /* ---------- Progress ---------- */
+  .progress-wrap{ margin-bottom:34px; }
+  .progress-track{
+    height:3px; background:rgba(45,58,52,0.12); border-radius:2px; overflow:hidden;
+  }
+  .progress-fill{
+    height:100%; background:var(--sage-deep); border-radius:2px;
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
+    width:20%;
+  }
+  .progress-label{
+    display:flex; justify-content:space-between; margin-top:10px;
+    font-size:12px; letter-spacing:0.04em; color:#6b7a72; font-weight:500;
+  }
+
+  /* ---------- Card / Steps ---------- */
+  .card{
+    background: var(--paper);
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow: var(--shadow);
+    padding: 40px 36px;
+  }
+  @media (max-width:560px){ .card{ padding: 28px 20px; } }
+
+  .step{ display:none; animation: fadeIn 0.5s ease; }
+  .step.active{ display:block; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .section-tag{
+    font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:700; margin-bottom:8px;
+  }
+  .step h2{
+    font-family:'Playfair Display', serif; font-weight:600;
+    font-size:26px; color:var(--charcoal); margin:0 0 6px;
+  }
+  .step .intro{
+    font-size:15px; color:#5b6b62; line-height:1.6; margin:0 0 28px;
+  }
+
+  /* ---------- Form elements ---------- */
+  .field{ margin-bottom:22px; }
+  .field label{
+    display:block; font-size:13.5px; font-weight:600; color:var(--charcoal);
+    margin-bottom:8px;
+  }
+  .field .hint{ font-size:12.5px; color:#7c8a82; margin-top:6px; font-weight:400; }
+  input[type="text"], input[type="number"], input[type="tel"], input[type="email"], select, textarea{
+    width:100%; padding:12px 14px; font-family:'Inter',sans-serif; font-size:14.5px;
+    border:1.5px solid var(--line); border-radius:10px; background:#fff; color:var(--ink);
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus{
+    outline:none; border-color: var(--sage-deep);
+  }
+  textarea{ min-height:80px; resize:vertical; }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:520px){ .row2{ grid-template-columns:1fr; } }
+
+  .radio-group, .check-group{ display:flex; flex-direction:column; gap:10px; }
+  .opt{
+    display:flex; align-items:flex-start; gap:11px;
+    padding:13px 14px; border:1.5px solid var(--line); border-radius:10px;
+    cursor:pointer; transition: border-color 0.2s, background 0.2s;
+    background:#fff;
+  }
+  .opt:hover{ border-color: var(--sage-muted); }
+  .opt input{ margin-top:3px; accent-color: var(--sage-deep); width:16px; height:16px; flex-shrink:0; }
+  .opt span{ font-size:14px; line-height:1.45; color:var(--ink); }
+  .opt.checked{ border-color: var(--sage-deep); background: rgba(161,180,154,0.12); }
+
+  /* Likert scale */
+  .likert-item{ margin-bottom:26px; padding-bottom:22px; border-bottom:1px solid var(--line); }
+  .likert-item:last-child{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .likert-q{ font-size:14.5px; color:var(--ink); line-height:1.55; margin-bottom:14px; font-weight:500; }
+  .likert-q .qnum{ color:var(--sage-deep); font-weight:700; margin-right:6px; }
+  .likert-scale{ display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+  .likert-opt{
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    padding:10px 4px; border:1.5px solid var(--line); border-radius:10px;
+    cursor:pointer; background:#fff; transition:border-color .2s, background .2s;
+  }
+  .likert-opt:hover{ border-color:var(--sage-muted); }
+  .likert-opt.checked{ border-color:var(--sage-deep); background:rgba(161,180,154,0.14); }
+  .likert-opt input{ accent-color:var(--sage-deep); }
+  .likert-opt .num{ font-family:'Playfair Display',serif; font-size:15px; color:var(--charcoal); font-weight:600; }
+  .likert-opt .lbl{ font-size:9.5px; text-align:center; color:#7c8a82; line-height:1.2; }
+
+  .scenario-box{
+    background: var(--cream); border:1px solid var(--line); border-radius:12px;
+    padding:18px 20px; margin-bottom:16px; font-family:'Cormorant Garamond', serif;
+    font-size:16.5px; line-height:1.65; color:var(--charcoal); font-style:italic;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn-row{ display:flex; justify-content:space-between; align-items:center; margin-top:34px; gap:12px; }
+  .btn{
+    font-family:'Inter', sans-serif; font-size:14.5px; font-weight:600;
+    padding:13px 26px; border-radius:10px; border:none; cursor:pointer;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  }
+  .btn-primary{ background: var(--sage-deep); color:#fff; }
+  .btn-primary:hover{ background:#435c4d; box-shadow:0 8px 20px -6px rgba(79,107,88,0.5); }
+  .btn-ghost{ background:transparent; color:var(--charcoal); border:1.5px solid var(--line); }
+  .btn-ghost:hover{ border-color: var(--sage-deep); }
+  .btn:disabled{ opacity:0.4; cursor:not-allowed; }
+  .btn-primary:disabled:hover{ transform:none; box-shadow:none; background:var(--sage-deep); }
+
+  .error-msg{
+    font-size:12.5px; color:#a14f3f; margin-top:8px; display:none;
+  }
+
+  /* ---------- Results ---------- */
+  .result-hero{ text-align:center; margin-bottom:30px; }
+  .result-score-ring{
+    width:140px; height:140px; margin:0 auto 18px; position:relative;
+  }
+  .result-score-ring svg{ transform: rotate(-90deg); }
+  .result-score-ring .ring-bg{ fill:none; stroke:rgba(45,58,52,0.1); stroke-width:8; }
+  .result-score-ring .ring-fill{ fill:none; stroke:var(--sage-deep); stroke-width:8; stroke-linecap:round; transition: stroke-dashoffset 1s ease; }
+  .result-score-ring .ring-num{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
+  }
+  .result-score-ring .ring-num .pct{ font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:var(--charcoal); }
+  .result-score-ring .ring-num .pct-lbl{ font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#7c8a82; }
+
+  .category-badge{
+    display:inline-block; padding:8px 20px; border-radius:30px;
+    font-family:'Playfair Display', serif; font-weight:600; font-size:18px;
+    margin-bottom:8px; color:#fff;
+  }
+  .cat-rendah{ background:#9c8262; }
+  .cat-sedang{ background:#7c9272; }
+  .cat-tinggi{ background:#4F6B58; }
+  .cat-sangat-tinggi{ background:#3a5345; }
+
+  .result-sub{ font-size:14px; color:#5b6b62; max-width:480px; margin:0 auto; line-height:1.6; }
+
+  .result-section{ margin-top:32px; }
+  .result-section h3{
+    font-family:'Playfair Display', serif; font-size:18px; color:var(--charcoal);
+    margin:0 0 14px; display:flex; align-items:center; gap:10px;
+  }
+  .result-section h3::before{
+    content:""; width:5px; height:18px; background:var(--sage-deep); border-radius:2px;
+  }
+  .breakdown-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:11px 0; border-bottom:1px solid var(--line); font-size:14px;
+  }
+  .breakdown-row:last-child{ border-bottom:none; }
+  .breakdown-row .name{ color:#5b6b62; }
+  .breakdown-row .val{ font-weight:700; color:var(--charcoal); }
+
+  .reco-list{ display:flex; flex-direction:column; gap:12px; }
+  .reco-item{
+    background: var(--cream); border-left:3px solid var(--sage-deep);
+    border-radius:8px; padding:13px 16px; font-size:14px; line-height:1.55; color:var(--ink);
+  }
+  .reco-item b{ color:var(--sage-deep); }
+
+  .flag-box{
+    background:#fbf0ec; border:1.5px solid #e0b9a8; border-radius:10px;
+    padding:14px 16px; font-size:13.5px; color:#8a4633; line-height:1.55; margin-top:18px;
+  }
+  .flag-box b{ display:block; margin-bottom:4px; font-family:'Playfair Display',serif; font-size:14.5px; }
+
+  .client-summary{
+    background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 20px;
+    margin-top:8px;
+  }
+  .client-summary .row{ display:flex; justify-content:space-between; padding:7px 0; font-size:13.5px; border-bottom:1px dashed var(--line); }
+  .client-summary .row:last-child{ border-bottom:none; }
+  .client-summary .row span:first-child{ color:#7c8a82; }
+  .client-summary .row span:last-child{ font-weight:600; color:var(--charcoal); text-align:right; max-width:60%; }
+
+  .footer-note{
+    text-align:center; font-size:12px; color:#8a9690; margin-top:40px; line-height:1.6;
+  }
+  .footer-note .brand{ color:var(--sage-deep); font-weight:600; }
+
+  @media print{
+    body::before{ display:none; }
+    .no-print{ display:none !important; }
+    .card{ box-shadow:none; border:none; }
+    .app{ padding:0; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="masthead">
+    <div class="mark">D</div>
+    <div class="eyebrow">DARMA Hipnoterapi</div>
+    <h1>Screening Klien & Tes Sugestivitas</h1>
+    <p>Emotional Healing & Subconscious Transformation</p>
+  </div>
+
+  <div class="progress-wrap no-print" id="progressWrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span id="progressText">Langkah 1 dari 5</span><span id="progressPct">0%</span></div>
+  </div>
+
+  <div class="card">
+
+    <!-- STEP 0: WELCOME -->
+    <div class="step active" data-step="0">
+      <div class="section-tag">Sebelum mulai</div>
+      <h2>Selamat datang</h2>
+      <p class="intro">
+        Formulir ini membantu kami memahami kondisi Anda dan mengukur tingkat respons terhadap sugesti, 
+        agar sesi hipnoterapi yang dirancang benar-benar sesuai dengan cara pikiran Anda bekerja. 
+        Tidak ada jawaban benar atau salah — jawablah dengan jujur sesuai pengalaman Anda yang sebenarnya.
+      </p>
+      <div class="reco-list" style="margin-bottom:10px;">
+        <div class="reco-item"><b>Durasi:</b> sekitar 8–10 menit, terdiri dari 3 bagian singkat.</div>
+        <div class="reco-item"><b>Kerahasiaan:</b> seluruh jawaban bersifat pribadi dan hanya digunakan oleh terapis Anda untuk menyusun sesi yang tepat.</div>
+        <div class="reco-item"><b>Hasil:</b> di akhir, Anda akan melihat ringkasan tingkat sugestivitas Anda yang dapat disimpan sebagai PDF.</div>
+      </div>
+      <div class="btn-row">
+        <span></span>
+        <button class="btn btn-primary" onclick="goToStep(1)">Mulai Screening →</button>
+      </div>
+    </div>
+
+    <!-- STEP 1: PROFIL & SCREENING KLINIS -->
+    <div class="step" data-step="1">
+      <div class="section-tag">Bagian 1 dari 3</div>
+      <h2>Profil & Riwayat</h2>
+      <p class="intro">Informasi dasar ini membantu terapis memahami konteks dan memastikan keamanan sesi.</p>
+
+      <div class="row2">
+        <div class="field">
+          <label>Nama lengkap *</label>
+          <input type="text" id="f_nama" placeholder="Nama Anda">
+        </div>
+        <div class="field">
+          <label>Usia *</label>
+          <input type="number" id="f_usia" placeholder="contoh: 32" min="10" max="100">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>Nomor WhatsApp *</label>
+          <input type="tel" id="f_wa" placeholder="08xxxxxxxxxx">
+        </div>
+        <div class="field">
+          <label>Jenis kelamin</label>
+          <select id="f_gender">
+            <option value="">Pilih</option>
+            <option>Laki-laki</option>
+            <option>Perempuan</option>
+            <option>Lainnya / tidak ingin menyebutkan</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Apa tujuan utama Anda mengikuti hipnoterapi? *</label>
+        <textarea id="f_tujuan" placeholder="contoh: mengatasi kecemasan, trauma masa kecil, kebiasaan merokok, gangguan tidur, dll."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Apakah Anda pernah didiagnosis atau sedang mengalami kondisi berikut? (boleh pilih lebih dari satu)</label>
+        <div class="check-group" id="f_kondisi">
+          <label class="opt"><input type="checkbox" value="Epilepsi / riwayat kejang"><span>Epilepsi atau riwayat kejang</span></label>
+          <label class="opt"><input type="checkbox" value="Psikosis / Skizofrenia"><span>Psikosis, skizofrenia, atau gangguan psikotik lainnya</span></label>
+          <label class="opt"><input type="checkbox" value="Gangguan Bipolar"><span>Gangguan bipolar (episode aktif)</span></label>
+          <label class="opt"><input type="checkbox" value="Sedang dalam perawatan psikiatri intensif"><span>Sedang dalam perawatan psikiatris intensif / baru keluar rawat inap</span></label>
+          <label class="opt"><input type="checkbox" value="Kehamilan trimester awal dengan risiko tinggi"><span>Kehamilan dengan risiko tinggi</span></label>
+          <label class="opt"><input type="checkbox" value="none"><span>Tidak ada satupun dari di atas</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Apakah Anda sedang mengonsumsi obat-obatan dari psikiater/dokter (penenang, antidepresan, dll)?</label>
+        <div class="radio-group" id="f_obat">
+          <label class="opt"><input type="radio" name="obat" value="Ya"><span>Ya</span></label>
+          <label class="opt"><input type="radio" name="obat" value="Tidak"><span>Tidak</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Apakah Anda pernah menjalani hipnoterapi sebelumnya?</label>
+        <div class="radio-group" id="f_pengalaman">
+          <label class="opt"><input type="radio" name="pengalaman" value="Belum pernah"><span>Belum pernah</span></label>
+          <label class="opt"><input type="radio" name="pengalaman" value="Pernah, hasilnya baik"><span>Pernah, dan hasilnya cukup baik</span></label>
+          <label class="opt"><input type="radio" name="pengalaman" value="Pernah, kurang berhasil"><span>Pernah, tapi kurang berhasil</span></label>
+        </div>
+      </div>
+
+      <div class="error-msg" id="err1">Mohon lengkapi nama, usia, nomor WhatsApp, dan tujuan terapi sebelum melanjutkan.</div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goToStep(0)">← Kembali</button>
+        <button class="btn btn-primary" onclick="validateStep1()">Lanjut →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: ABSORPSI & IMAJINASI -->
+    <div class="step" data-step="2">
+      <div class="section-tag">Bagian 2 dari 3</div>
+      <h2>Kedalaman Imajinasi</h2>
+      <p class="intro">
+        Pikirkan masing-masing pernyataan berikut dan nilai seberapa sesuai dengan pengalaman Anda sehari-hari, 
+        dari <b>1 (Sangat tidak sesuai)</b> hingga <b>5 (Sangat sesuai)</b>.
+      </p>
+      <div id="absorptionItems"></div>
+      <div class="error-msg" id="err2">Mohon jawab seluruh pernyataan sebelum melanjutkan.</div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goToStep(1)">← Kembali</button>
+        <button class="btn btn-primary" onclick="validateStep2()">Lanjut →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: RESPONS SUGESTI TERARAH -->
+    <div class="step" data-step="3">
+      <div class="section-tag">Bagian 3 dari 3</div>
+      <h2>Respons Sugesti Terarah</h2>
+      <p class="intro">
+        Baca setiap skenario secara perlahan, coba bayangkan dengan sungguh-sungguh selama 15–20 detik, 
+        lalu nilai seberapa nyata respons yang Anda rasakan.
+      </p>
+      <div id="suggestionItems"></div>
+      <div class="error-msg" id="err3">Mohon jawab seluruh skenario sebelum melanjutkan.</div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goToStep(2)">← Kembali</button>
+        <button class="btn btn-primary" onclick="calculateResults()">Lihat Hasil →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: RESULTS -->
+    <div class="step" data-step="4">
+      <div class="section-tag">Hasil</div>
+      <h2>Profil Sugestivitas Anda</h2>
+
+      <div class="result-hero">
+        <div class="result-score-ring">
+          <svg width="140" height="140" viewBox="0 0 140 140">
+            <circle class="ring-bg" cx="70" cy="70" r="58"></circle>
+            <circle class="ring-fill" id="ringFill" cx="70" cy="70" r="58" stroke-dasharray="364" stroke-dashoffset="364"></circle>
+          </svg>
+          <div class="ring-num"><div class="pct" id="scorePct">0%</div><div class="pct-lbl">Skor Total</div></div>
+        </div>
+        <div class="category-badge" id="categoryBadge">—</div>
+        <p class="result-sub" id="categoryDesc"></p>
+      </div>
+
+      <div class="result-section">
+        <h3>Ringkasan Profil Klien</h3>
+        <div class="client-summary" id="clientSummary"></div>
+      </div>
+
+      <div class="result-section">
+        <h3>Rincian Skor</h3>
+        <div class="client-summary">
+          <div class="breakdown-row"><span class="name">Skala Absorpsi & Imajinasi</span><span class="val" id="scoreAbsorpsi">—</span></div>
+          <div class="breakdown-row"><span class="name">Respons Sugesti Terarah</span><span class="val" id="scoreSugesti">—</span></div>
+          <div class="breakdown-row"><span class="name">Skor Gabungan</span><span class="val" id="scoreGabungan">—</span></div>
+        </div>
+      </div>
+
+      <div class="result-section">
+        <h3>Rekomendasi Pendekatan Sesi</h3>
+        <div class="reco-list" id="recoList"></div>
+      </div>
+
+      <div id="flagSection"></div>
+
+      <div class="btn-row no-print">
+        <button class="btn btn-ghost" onclick="window.print()">🖨 Simpan sebagai PDF</button>
+        <button class="btn btn-primary" onclick="location.reload()">Mulai Ulang</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-note no-print">
+    <span class="brand">DARMA Hipnoterapi</span> — Emotional Healing & Subconscious Transformation<br>
+    Hasil ini bersifat indikatif untuk membantu penyusunan sesi, bukan diagnosis klinis.
+  </div>
+
+</div>
+
+<script>
+/* ============ DATA: ABSORPTION SCALE (Tellegen-style, simplified) ============ */
+const absorptionItems = [
+  "Ketika saya mendengarkan musik yang saya sukai, saya bisa benar-benar terhanyut hingga melupakan sekitar saya.",
+  "Saya sering membayangkan sesuatu dengan begitu jelas sehingga rasanya seperti benar-benar mengalaminya.",
+  "Saat menonton film yang menarik, saya bisa merasa seolah saya berada di dalam cerita itu.",
+  "Saya mudah larut dalam lamunan atau khayalan di tengah aktivitas sehari-hari.",
+  "Ketika membaca buku yang bagus, saya kadang tidak menyadari waktu yang berlalu.",
+  "Saya bisa mengingat kembali suatu kenangan dengan begitu detail seakan sedang mengalaminya lagi.",
+  "Saya cukup peka terhadap perubahan kecil dalam suasana atau perasaan di sekitar saya.",
+  "Saya bisa dengan mudah membayangkan rasa, aroma, atau tekstur hanya dengan memikirkannya.",
+  "Saya kadang merasa 'menyatu' dengan alam, musik, atau momen tertentu secara mendalam.",
+  "Pikiran saya mudah terfokus penuh pada satu hal hingga mengabaikan hal lain di sekitar saya."
+];
+
+/* ============ DATA: DIRECTED SUGGESTION SCENARIOS (Harvard/Stanford-inspired, self-report) ============ */
+const suggestionItems = [
+  {
+    text: "Bayangkan Anda memegang seember kecil di tangan kanan Anda. Di dalamnya ada beberapa buah jeruk yang berat. Rasakan tangan Anda mulai tertarik ke bawah karena beratnya... Bayangkan ini selama beberapa saat.",
+    q: "Seberapa nyata Anda merasakan tangan kanan Anda menjadi lebih berat atau tertarik ke bawah?"
+  },
+  {
+    text: "Bayangkan Anda memegang sebutir lemon segar. Anda mengiris lemon itu menjadi dua, mencium aromanya yang tajam, lalu menggigit salah satu bagiannya dan merasakan rasa asamnya di lidah.",
+    q: "Seberapa nyata mulut Anda terasa berair atau bereaksi terhadap bayangan rasa asam tersebut?"
+  },
+  {
+    text: "Bayangkan kedua telapak tangan Anda saling berhadapan, terpisah sekitar 20 cm. Di antara keduanya ada gaya magnet yang lembut, menarik kedua tangan untuk saling mendekat satu sama lain.",
+    q: "Seberapa kuat Anda merasakan dorongan atau tarikan yang membuat tangan ingin bergerak mendekat?"
+  },
+  {
+    text: "Bayangkan Anda berdiri di tepi pantai saat senja. Angin sejuk menyentuh kulit Anda, suara ombak terdengar berirama, dan udara terasa segar memenuhi pernapasan Anda.",
+    q: "Seberapa jelas dan nyata gambaran serta sensasi pantai tersebut terasa dalam pikiran Anda?"
+  },
+  {
+    text: "Bayangkan tubuh Anda perlahan menjadi sangat ringan, seolah mengambang dengan lembut, seperti melayang sesaat di atas permukaan air yang tenang.",
+    q: "Seberapa nyata Anda merasakan sensasi ringan atau melayang tersebut pada tubuh Anda?"
+  }
+];
+
+const scaleLabels = ["Sangat\ntidak sesuai","Tidak\nsesuai","Netral","Sesuai","Sangat\nsesuai"];
+const respLabels = ["Tidak\nterasa","Sedikit\nterasa","Cukup\nterasa","Terasa\njelas","Sangat\nnyata"];
+
+function renderLikertGroup(containerId, items, namePrefix, labels){
+  const container = document.getElementById(containerId);
+  let html = '';
+  items.forEach((item, idx) => {
+    const text = typeof item === 'string' ? item : item.text;
+    const question = typeof item === 'string' ? item : item.q;
+    html += `<div class="likert-item">`;
+    if(typeof item !== 'string'){
+      html += `<div class="scenario-box">${text}</div>`;
+    }
+    html += `<div class="likert-q"><span class="qnum">${idx+1}.</span>${question}</div>`;
+    html += `<div class="likert-scale">`;
+    for(let v=1; v<=5; v++){
+      html += `<label class="likert-opt" data-name="${namePrefix}${idx}">
+        <input type="radio" name="${namePrefix}${idx}" value="${v}" onchange="markChecked(this)">
+        <span class="num">${v}</span>
+        <span class="lbl">${labels[v-1]}</span>
+      </label>`;
+    }
+    html += `</div></div>`;
+  });
+  container.innerHTML = html;
+}
+
+function markChecked(input){
+  const name = input.name;
+  document.querySelectorAll(`.likert-opt[data-name="${name}"]`).forEach(el => el.classList.remove('checked'));
+  input.closest('.likert-opt').classList.add('checked');
+}
+
+renderLikertGroup('absorptionItems', absorptionItems, 'abs', scaleLabels);
+renderLikertGroup('suggestionItems', suggestionItems, 'sug', respLabels);
+
+/* checkbox/radio visual state for step 1 */
+document.querySelectorAll('#f_kondisi input, #f_obat input, #f_pengalaman input').forEach(inp => {
+  inp.addEventListener('change', () => {
+    const group = inp.closest('.check-group, .radio-group');
+    if(inp.type === 'radio'){
+      group.querySelectorAll('.opt').forEach(o => o.classList.remove('checked'));
+    }
+    inp.closest('.opt').classList.toggle('checked', inp.checked);
+  });
+});
+
+/* ============ NAVIGATION ============ */
+const totalSteps = 5; // 0-4
+function goToStep(n){
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.querySelector(`.step[data-step="${n}"]`).classList.add('active');
+  updateProgress(n);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function updateProgress(n){
+  const pct = Math.round((n/(totalSteps-1))*100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+  const labels = ['Mulai','Profil & Riwayat','Kedalaman Imajinasi','Respons Sugesti','Hasil'];
+  document.getElementById('progressText').textContent = `${labels[n]}`;
+  document.getElementById('progressWrap').style.display = (n === totalSteps-1) ? 'none' : 'block';
+}
+
+function validateStep1(){
+  const nama = document.getElementById('f_nama').value.trim();
+  const usia = document.getElementById('f_usia').value.trim();
+  const wa = document.getElementById('f_wa').value.trim();
+  const tujuan = document.getElementById('f_tujuan').value.trim();
+  if(!nama || !usia || !wa || !tujuan){
+    document.getElementById('err1').style.display = 'block';
+    return;
+  }
+  document.getElementById('err1').style.display = 'none';
+  goToStep(2);
+}
+
+function validateStep2(){
+  const missing = absorptionItems.some((_, idx) => !document.querySelector(`input[name="abs${idx}"]:checked`));
+  if(missing){
+    document.getElementById('err2').style.display = 'block';
+    return;
+  }
+  document.getElementById('err2').style.display = 'none';
+  goToStep(3);
+}
+
+/* ============ SCORING ============ */
+function calculateResults(){
+  const missing = suggestionItems.some((_, idx) => !document.querySelector(`input[name="sug${idx}"]:checked`));
+  if(missing){
+    document.getElementById('err3').style.display = 'block';
+    return;
+  }
+  document.getElementById('err3').style.display = 'none';
+
+  // Collect absorption score (10 items x 1-5, max 50)
+  let absTotal = 0;
+  absorptionItems.forEach((_, idx) => {
+    absTotal += parseInt(document.querySelector(`input[name="abs${idx}"]:checked`).value);
+  });
+  const absPct = Math.round((absTotal/50)*100);
+
+  // Collect suggestion score (5 items x 1-5, max 25)
+  let sugTotal = 0;
+  suggestionItems.forEach((_, idx) => {
+    sugTotal += parseInt(document.querySelector(`input[name="sug${idx}"]:checked`).value);
+  });
+  const sugPct = Math.round((sugTotal/25)*100);
+
+  // Combined score: weighted 40% absorption, 60% directed suggestion
+  // (directed suggestion response is more predictive of actual hypnotic responsiveness)
+  const combinedPct = Math.round(absPct*0.4 + sugPct*0.6);
+
+  // Category
+  let category, catClass, catDesc;
+  if(combinedPct >= 80){
+    category = "Sangat Tinggi"; catClass = "cat-sangat-tinggi";
+    catDesc = "Klien menunjukkan respons sugesti yang sangat kuat dan kemampuan imajinasi/absorpsi yang mendalam. Sangat berpotensi mencapai trance dalam dengan cepat.";
+  } else if(combinedPct >= 60){
+    category = "Tinggi"; catClass = "cat-tinggi";
+    catDesc = "Klien memiliki respons sugesti yang baik dan kemampuan visualisasi yang kuat. Sangat kondusif untuk teknik hipnoterapi standar.";
+  } else if(combinedPct >= 40){
+    category = "Sedang"; catClass = "cat-sedang";
+    catDesc = "Klien menunjukkan respons sugesti yang cukup, namun mungkin memerlukan pendekatan yang lebih bertahap dan personal untuk mencapai trance optimal.";
+  } else {
+    category = "Rendah"; catClass = "cat-rendah";
+    catDesc = "Klien menunjukkan kecenderungan analitis/kritis yang lebih dominan. Pendekatan permisif dan membangun kepercayaan secara perlahan akan lebih efektif.";
+  }
+
+  // Render score ring
+  const circumference = 364;
+  const offset = circumference - (combinedPct/100)*circumference;
+  document.getElementById('ringFill').style.strokeDashoffset = offset;
+  document.getElementById('scorePct').textContent = combinedPct + '%';
+  const badge = document.getElementById('categoryBadge');
+  badge.textContent = category + ' Sugestivitas';
+  badge.className = 'category-badge ' + catClass;
+  document.getElementById('categoryDesc').textContent = catDesc;
+
+  document.getElementById('scoreAbsorpsi').textContent = absPct + '% (' + absTotal + '/50)';
+  document.getElementById('scoreSugesti').textContent = sugPct + '% (' + sugTotal + '/25)';
+  document.getElementById('scoreGabungan').textContent = combinedPct + '%';
+
+  // Client summary
+  const nama = document.getElementById('f_nama').value.trim();
+  const usia = document.getElementById('f_usia').value.trim();
+  const wa = document.getElementById('f_wa').value.trim();
+  const gender = document.getElementById('f_gender').value || '—';
+  const tujuan = document.getElementById('f_tujuan').value.trim();
+  const kondisiChecked = Array.from(document.querySelectorAll('#f_kondisi input:checked')).map(c => c.value).filter(v => v !== 'none');
+  const obat = document.querySelector('input[name="obat"]:checked')?.value || '—';
+  const pengalaman = document.querySelector('input[name="pengalaman"]:checked')?.value || '—';
+
+  document.getElementById('clientSummary').innerHTML = `
+    <div class="row"><span>Nama</span><span>${nama}</span></div>
+    <div class="row"><span>Usia</span><span>${usia} tahun</span></div>
+    <div class="row"><span>WhatsApp</span><span>${wa}</span></div>
+    <div class="row"><span>Jenis kelamin</span><span>${gender}</span></div>
+    <div class="row"><span>Tujuan terapi</span><span>${tujuan}</span></div>
+    <div class="row"><span>Pengalaman hipnoterapi</span><span>${pengalaman}</span></div>
+    <div class="row"><span>Konsumsi obat psikiatri</span><span>${obat}</span></div>
+    <div class="row"><span>Kondisi perhatian khusus</span><span>${kondisiChecked.length ? kondisiChecked.join(', ') : 'Tidak ada'}</span></div>
+  `;
+
+  // Recommendations based on category
+  let recos = [];
+  if(combinedPct >= 80){
+    recos = [
+      "<b>Teknik induksi:</b> Direct suggestion atau rapid induction dapat digunakan secara efektif — klien merespons sugesti langsung dengan baik.",
+      "<b>Kedalaman trance:</b> Klien berpotensi mencapai somnambulisme; sesi regresi atau age regression dapat dipertimbangkan jika relevan dengan tujuan terapi.",
+      "<b>Perhatian:</b> Pastikan sugesti pasca-hipnotik disampaikan dengan presisi karena tingkat penerimaan klien sangat tinggi."
+    ];
+  } else if(combinedPct >= 60){
+    recos = [
+      "<b>Teknik induksi:</b> Progressive relaxation atau eye fixation bekerja baik. Direct suggestion dapat mulai diperkenalkan setelah trance awal tercapai.",
+      "<b>Kedalaman trance:</b> Cukup mudah mencapai trance medium hingga dalam dengan 1-2 sesi pemanasan.",
+      "<b>Pendekatan:</b> Gunakan visualisasi yang kaya detail sensorik untuk memperkuat pengalaman trance."
+    ];
+  } else if(combinedPct >= 40){
+    recos = [
+      "<b>Teknik induksi:</b> Pendekatan Ericksonian (permisif, metafora, storytelling) akan lebih efektif dibanding sugesti langsung.",
+      "<b>Kedalaman trance:</b> Mungkin memerlukan 2-3 sesi pembangunan rapport dan latihan relaksasi sebelum trance dalam tercapai.",
+      "<b>Pendekatan:</b> Libatkan klien dalam proses (misal: meminta klien memilih sendiri tempat aman dalam visualisasi) untuk mengurangi resistensi analitis."
+    ];
+  } else {
+    recos = [
+      "<b>Teknik induksi:</b> Hindari sugesti langsung di awal. Gunakan pendekatan permisif Ericksonian dan analytical bypass (cerita, metafora tidak langsung).",
+      "<b>Kedalaman trance:</b> Fokus pada pembangunan kepercayaan dan edukasi tentang proses hipnoterapi sebelum sesi formal pertama.",
+      "<b>Pendekatan:</b> Pertimbangkan teknik NLP atau coaching kognitif sebagai pelengkap, karena klien tipe ini cenderung merespons lebih baik pada pendekatan yang melibatkan logika dan pemahaman sadar."
+    ];
+  }
+  document.getElementById('recoList').innerHTML = recos.map(r => `<div class="reco-item">${r}</div>`).join('');
+
+  // Flags for contraindications
+  let flagHtml = '';
+  if(kondisiChecked.length > 0){
+    flagHtml += `<div class="flag-box"><b>⚠ Perhatian Klinis</b>Klien melaporkan kondisi berikut yang memerlukan evaluasi lebih lanjut sebelum sesi: ${kondisiChecked.join(', ')}. Pertimbangkan konsultasi dengan psikiater/dokter yang menangani sebelum melanjutkan sesi hipnoterapi, terutama untuk kondisi epilepsi, psikosis, atau gangguan bipolar episode aktif.</div>`;
+  }
+  if(obat === 'Ya'){
+    flagHtml += `<div class="flag-box"><b>ℹ Catatan Pengobatan</b>Klien sedang mengonsumsi obat psikiatri. Koordinasikan dengan dokter/psikiater yang menangani, dan hindari menyarankan penghentian obat melalui sesi hipnoterapi.</div>`;
+  }
+  document.getElementById('flagSection').innerHTML = flagHtml;
+
+  goToStep(4);
+}
+</script>
+</body>
+</html>
