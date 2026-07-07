@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DARMA Hipnoterapi — Formulir Intake Klien</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage-deep:#4F6B58;
+    --sage-muted:#A1B49A;
+    --cream:#F2EEE6;
+    --beige:#CDB9A3;
+    --charcoal:#2D3A34;
+    --white:#FFFFFF;
+    --line: rgba(45,58,52,0.14);
+    --shadow: 0 20px 50px -25px rgba(45,58,52,0.35);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--cream);
+    background-image:
+      radial-gradient(circle at 10% 0%, rgba(161,180,154,0.18), transparent 45%),
+      radial-gradient(circle at 90% 100%, rgba(205,185,163,0.25), transparent 45%);
+    color: var(--charcoal);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    min-height:100vh;
+  }
+  .wrap{ max-width: 760px; margin: 0 auto; padding: 48px 20px 100px; }
+
+  /* Header */
+  .brandmark{
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    margin-bottom: 6px;
+  }
+  .ring{
+    width:34px; height:34px; border-radius:50%;
+    border: 1.5px solid var(--sage-deep);
+    position:relative; flex:none;
+  }
+  .ring::after{
+    content:''; position:absolute; inset:7px; border-radius:50%;
+    border: 1px solid var(--beige);
+  }
+  header{ text-align:center; margin-bottom:44px; }
+  header h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size: 2.4rem;
+    letter-spacing: 0.01em;
+    margin: 4px 0 6px;
+    color: var(--charcoal);
+  }
+  header p.tag{
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--sage-deep);
+    margin: 0 0 18px;
+  }
+  header .contact{
+    font-size: 0.85rem;
+    color: var(--charcoal);
+    opacity:0.75;
+  }
+  header .contact a{ color: var(--sage-deep); text-decoration:none; }
+
+  /* Card / sections */
+  .card{
+    background: var(--white);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    overflow:hidden;
+  }
+  .section{
+    padding: 34px 36px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section:last-child{ border-bottom:none; }
+  .section-head{
+    display:flex; align-items:baseline; gap:12px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.1rem;
+    color: var(--sage-deep);
+  }
+  .section-head h2{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:1.5rem;
+    margin:0;
+    color: var(--charcoal);
+  }
+  .section-note{
+    font-size:0.82rem;
+    color: var(--charcoal);
+    opacity:0.62;
+    margin: -14px 0 22px;
+  }
+
+  .field{ margin-bottom:20px; }
+  .field:last-child{ margin-bottom:0; }
+  .field label{
+    display:block;
+    font-size:0.78rem;
+    font-weight:600;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color: var(--charcoal);
+    opacity:0.72;
+    margin-bottom:8px;
+  }
+  .field input[type=text], .field input[type=tel], .field input[type=email],
+  .field input[type=date], .field textarea{
+    width:100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--cream);
+    font-family:'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    transition: border-color .15s, background .15s;
+  }
+  .field input:focus, .field textarea:focus{
+    outline:none;
+    border-color: var(--sage-deep);
+    background: var(--white);
+  }
+  .field textarea{ resize: vertical; min-height:80px; }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:560px){ .row2{ grid-template-columns:1fr; } }
+
+  .pills{ display:flex; flex-wrap:wrap; gap:10px; }
+  .pill{
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--cream);
+    font-size: 0.86rem;
+    cursor:pointer;
+    user-select:none;
+    transition: all .15s;
+    color: var(--charcoal);
+  }
+  .pill:hover{ border-color: var(--sage-muted); }
+  .pill.active{
+    background: var(--sage-deep);
+    border-color: var(--sage-deep);
+    color: var(--white);
+  }
+  .lainnya-input{ margin-top:10px; display:none; }
+  .lainnya-input.show{ display:block; }
+
+  .terms-box{
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    max-height: 220px;
+    overflow-y:auto;
+    font-size: 0.82rem;
+    color: var(--charcoal);
+    opacity:0.85;
+  }
+  .terms-box ol{ margin:0; padding-left:18px; }
+  .terms-box li{ margin-bottom:10px; }
+  .rekening-note{
+    background: var(--cream);
+    border: 1px dashed var(--sage-muted);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    margin-top: 14px;
+  }
+
+  .agree-row{
+    display:flex; align-items:flex-start; gap:10px;
+    margin-top:18px;
+    font-size:0.86rem;
+  }
+  .agree-row input{ margin-top:3px; }
+
+  .cta-bar{
+    padding: 30px 36px 8px;
+    text-align:center;
+  }
+  button.submit-btn{
+    width:100%;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: none;
+    background: var(--sage-deep);
+    color: var(--white);
+    font-family:'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight:600;
+    letter-spacing: 0.03em;
+    cursor:pointer;
+    transition: background .15s, transform .1s;
+  }
+  button.submit-btn:hover{ background:#3f5748; }
+  button.submit-btn:active{ transform: scale(0.99); }
+  button.submit-btn:disabled{ opacity:0.6; cursor:not-allowed; }
+  .error-msg{
+    color:#a13a3a; font-size:0.82rem; margin-top:12px; display:none;
+  }
+  .config-warning{
+    background:#fff7e6; border:1px solid #e8c98a; color:#7a5b1a;
+    font-size:0.8rem; padding:12px 16px; border-radius:10px; margin-bottom:28px;
+  }
+
+  /* Summary / print view */
+  #summaryView{ display:none; }
+  .summary-actions{
+    display:flex; gap:12px; padding: 28px 36px 36px;
+  }
+  .summary-actions button{
+    flex:1;
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-family:'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight:600;
+    cursor:pointer;
+    border:1px solid var(--sage-deep);
+  }
+  .btn-print{ background: var(--sage-deep); color:var(--white); }
+  .btn-new{ background: var(--white); color: var(--sage-deep); }
+
+  .print-sheet{ padding: 40px 44px; }
+  .print-sheet h2.doc-title{
+    font-family:'Cormorant Garamond', serif;
+    text-align:center;
+    font-size:1.5rem;
+    margin:0 0 2px;
+    letter-spacing:0.02em;
+  }
+  .print-sheet .doc-sub{
+    text-align:center; font-size:0.78rem; color: var(--sage-deep);
+    margin-bottom: 4px;
+  }
+  .print-sheet .doc-meta{
+    text-align:center; font-size:0.78rem; opacity:0.7; margin-bottom:26px;
+  }
+  .print-grid{
+    display:grid; grid-template-columns: 210px 1fr;
+    row-gap: 10px; font-size:0.88rem;
+  }
+  .print-grid dt{ opacity:0.62; }
+  .print-grid dd{ margin:0; font-weight:500; }
+  .print-section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    color: var(--sage-deep);
+    margin: 26px 0 12px;
+    padding-bottom:6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .sig-block{
+    display:flex; justify-content:space-between; margin-top:44px;
+    font-size:0.85rem;
+  }
+  .sig-block div{ text-align:center; width:220px; }
+  .sig-line{ margin-top:56px; border-top:1px solid var(--charcoal); padding-top:6px; }
+
+  footer.brand-footer{
+    text-align:center; margin-top:32px; font-size:0.75rem; opacity:0.55;
+  }
+
+  @media print{
+    body{ background:#fff !important; }
+    .wrap{ max-width:100%; padding:0; }
+    .card{ box-shadow:none; border:none; border-radius:0; }
+    header, .summary-actions, .no-print{ display:none !important; }
+    #formView{ display:none !important; }
+    #summaryView{ display:block !important; }
+    .print-sheet{ padding:0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brandmark"><span class="ring"></span></div>
+    <p class="tag">Darma Hipnoterapi</p>
+    <h1>Formulir Intake &amp; Screening Klien</h1>
+    <p class="contact">darmahipnoterapi.com &nbsp;·&nbsp; WA 087828827575</p>
+  </header>
+
+  <div id="formView" class="card">
+    <form id="intakeForm" autocomplete="off">
+
+      <div class="section">
+        <div id="configWarning" class="config-warning" style="display:none;">
+          Google Sheets belum terhubung. Tempel URL Web App dari Apps Script ke variabel <code>GAS_URL</code> di dalam file HTML ini agar data otomatis tersimpan.
+        </div>
+
+        <div class="section-head"><span class="section-num">01</span><h2>Informasi Klien</h2></div>
+
+        <div class="field">
+          <label>Nama Klien</label>
+          <input type="text" id="namaKlien" required>
+        </div>
+
+        <div class="field">
+          <label>Keterangan Klien</label>
+          <div class="pills" data-group="keteranganKlien">
+            <div class="pill" data-value="Klien Baru">Klien Baru</div>
+            <div class="pill" data-value="Tambah Sesi">Tambah Sesi</div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label>Jenis Kelamin</label>
+            <div class="pills" data-group="jenisKelamin">
+              <div class="pill" data-value="Pria">Pria</div>
+              <div class="pill" data-value="Wanita">Wanita</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Status</label>
+            <div class="pills" data-group="status">
+              <div class="pill" data-value="Menikah">Menikah</div>
+              <div class="pill" data-value="Tidak Menikah">Tidak Menikah</div>
+              <div class="pill" data-value="Cerai">Cerai</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Alamat</label>
+          <textarea id="alamat" required></textarea>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label>Telepon</label>
+            <input type="tel" id="telepon" required>
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="email">
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label>Tempat Lahir</label>
+            <input type="text" id="tempatLahir">
+          </div>
+          <div class="field">
+            <label>Tanggal Lahir</label>
+            <input type="date" id="tanggalLahir">
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><span class="section-num">02</span><h2>Pemaparan Psikologis</h2></div>
+        <p class="section-note">Data ini membantu proses terapi. Kerahasiaan dijamin oleh Darma Hipnoterapi.</p>
+
+        <div class="field">
+          <label>Keyakinan</label>
+          <div class="pills" data-group="keyakinan">
+            <div class="pill" data-value="Islam">Islam</div>
+            <div class="pill" data-value="Kristen/Katolik">Kristen/Katolik</div>
+            <div class="pill" data-value="Hindu">Hindu</div>
+            <div class="pill" data-value="Budha">Budha</div>
+            <div class="pill" data-value="Lain-lain" data-lainnya="true">Lain-lain</div>
+          </div>
+          <input type="text" class="lainnya-input" data-for="keyakinan" placeholder="Sebutkan keyakinan lainnya">
+        </div>
+
+        <div class="field">
+          <label>Pendidikan</label>
+          <div class="pills" data-group="pendidikan">
+            <div class="pill" data-value="SLTA">SLTA</div>
+            <div class="pill" data-value="Diploma/Akademi">Diploma/Akademi</div>
+            <div class="pill" data-value="S1">S1</div>
+            <div class="pill" data-value="S2">S2</div>
+            <div class="pill" data-value="S3">S3</div>
+            <div class="pill" data-value="Lainnya" data-lainnya="true">Lainnya</div>
+          </div>
+          <input type="text" class="lainnya-input" data-for="pendidikan" placeholder="Sebutkan pendidikan lainnya">
+        </div>
+
+        <div class="field">
+          <label>Pekerjaan</label>
+          <div class="pills" data-group="pekerjaan">
+            <div class="pill" data-value="TNI/Polri">TNI/Polri</div>
+            <div class="pill" data-value="Peg. Negeri/BUMN">Peg. Negeri/BUMN</div>
+            <div class="pill" data-value="Professional">Professional</div>
+            <div class="pill" data-value="Wiraswasta">Wiraswasta</div>
+            <div class="pill" data-value="Karyawan Swasta">Karyawan Swasta</div>
+            <div class="pill" data-value="Lain-lain" data-lainnya="true">Lain-lain</div>
+          </div>
+          <input type="text" class="lainnya-input" data-for="pekerjaan" placeholder="Sebutkan pekerjaan lainnya">
+        </div>
+
+        <div class="field">
+          <label>Tenaga Ahli Yang Pernah Menangani</label>
+          <div class="pills" data-group="tenagaAhli">
+            <div class="pill" data-value="Psikiater">Psikiater</div>
+            <div class="pill" data-value="Hipnoterapis">Hipnoterapis</div>
+            <div class="pill" data-value="Konselor">Konselor</div>
+            <div class="pill" data-value="Psikolog">Psikolog</div>
+            <div class="pill" data-value="Tidak Ada">Tidak Ada</div>
+            <div class="pill" data-value="Lainnya" data-lainnya="true">Lainnya</div>
+          </div>
+          <input type="text" class="lainnya-input" data-for="tenagaAhli" placeholder="Sebutkan lainnya">
+        </div>
+
+        <div class="field">
+          <label>Kekuatan &amp; Minat Utama <span style="text-transform:none;opacity:.7;">(boleh lebih dari satu)</span></label>
+          <div class="pills multi" data-group="minatUtama">
+            <div class="pill" data-value="Seni">Seni</div>
+            <div class="pill" data-value="Sains/Teknologi">Sains/Teknologi</div>
+            <div class="pill" data-value="Sport">Sport</div>
+            <div class="pill" data-value="Bahasa">Bahasa</div>
+            <div class="pill" data-value="Bisnis/Keuangan">Bisnis/Keuangan</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Deskripsi Cerminan Diri <span style="text-transform:none;opacity:.7;">(boleh lebih dari satu)</span></label>
+          <div class="pills multi" data-group="cerminanDiri">
+            <div class="pill" data-value="Religius">Religius</div>
+            <div class="pill" data-value="Analitis/Logis">Analitis/Logis</div>
+            <div class="pill" data-value="Perasa">Perasa</div>
+            <div class="pill" data-value="Extrovert">Extrovert</div>
+            <div class="pill" data-value="Introvert">Introvert</div>
+            <div class="pill" data-value="Ambil Resiko">Ambil Resiko</div>
+            <div class="pill" data-value="Mistis">Mistis</div>
+            <div class="pill" data-value="Imajinatif">Imajinatif</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Apa Yang Ingin Dicapai Dalam Sesi Ini</label>
+          <textarea id="tujuanSesi" required></textarea>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><span class="section-num">03</span><h2>Informasi Layanan</h2></div>
+
+        <div class="field">
+          <label>Darimana Anda Mengetahui Kami</label>
+          <div class="pills" data-group="sumberInfo">
+            <div class="pill" data-value="Google">Google</div>
+            <div class="pill" data-value="Website darmahipnoterapi.com">Website</div>
+            <div class="pill" data-value="Instagram">Instagram</div>
+            <div class="pill" data-value="Lainnya" data-lainnya="true">Lainnya</div>
+          </div>
+          <input type="text" class="lainnya-input" data-for="sumberInfo" placeholder="Sebutkan sumber lainnya">
+        </div>
+
+        <div class="field">
+          <label>Jenis Layanan Yang Dipilih</label>
+          <div class="pills" data-group="jenisLayanan">
+            <div class="pill" data-value="Reguler">Reguler</div>
+            <div class="pill" data-value="Home Visit">Home Visit</div>
+            <div class="pill" data-value="Intensive">Intensive</div>
+            <div class="pill" data-value="Lainnya" data-lainnya="true">Lainnya</div>
+          </div>
+          <input type="text" class="lainnya-input" data-for="jenisLayanan" placeholder="Sebutkan layanan lainnya">
+        </div>
+
+        <div class="field">
+          <label>Cara Pembayaran</label>
+          <div class="pills" data-group="caraPembayaran">
+            <div class="pill" data-value="Cash">Cash</div>
+            <div class="pill" data-value="Mbanking">Mbanking</div>
+            <div class="pill" data-value="Debit">Debit</div>
+            <div class="pill" data-value="Kartu Kredit">Kartu Kredit</div>
+          </div>
+          <div class="rekening-note">Rekening Pembayaran: <strong>BCA 0083980921</strong> a/n Yayasan Darma Cipta Kualitas</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><span class="section-num">04</span><h2>Syarat &amp; Ketentuan</h2></div>
+        <div class="terms-box">
+          <ol>
+            <li>Pembayaran dilakukan full payment sebelum sesi hipnoterapi berlangsung.</li>
+            <li>Klien wajib memberitahukan riwayat medis yang pernah dilakukan, jika sedang mengalami gangguan fisik atau psikis yang berpotensi membahayakan diri sendiri atau orang lain seperti epilepsy, katarsis, penyakit jantung, asthma, psikotik, dll. Klien wajib memberitahukan di awal.</li>
+            <li>Hipnoterapis bukanlah seorang psikolog atau dokter medis, melainkan tenaga ahli terlatih dan professional.</li>
+            <li>Klien menyetujui bahwa hipnoterapi cocok untuk mereka dan tidak bertentangan dengan pengobatan medis atau psikiatris yang ada. Kami menghimbau untuk selalu mengikuti saran dari dokter atau praktisi medis professional lainnya. Layanan yang kami berikan merupakan komplementer dari pengobatan yang sudah ada, dan keberhasilan dari sesi yang dijalani merupakan suatu usaha bersama yang dicapai melalui proses serta kedisiplinan dalam menjalani terapi.</li>
+            <li>Metode yang digunakan dalam sesi hipnoterapi ini tidak mengandung unsur mistik, klenik, magis, agama.</li>
+            <li>Klien bersedia melakukan sesi terapi sesuai dengan waktu yang telah dijadwalkan, dan membayar sejumlah pembayaran sesuai dengan tarif yang telah ditentukan, tidak kurang dan tidak lebih. Perubahan jadwal sesi terapi hanya dapat dilakukan maksimal satu hari sebelum sesi berlangsung.</li>
+            <li>Paket Hipnoterapi yang telah dipilih oleh klien tidak dapat di refund, dipindah tangankan, dan dibatalkan. Paket sesi Hipnoterapi reguler/home visit 3 kali terapi yang telah diambil wajib diselesaikan dalam tempo waktu maksimal 6 minggu semenjak tanggal pendaftaran. Sedangkan untuk paket intensive care 12 kali terapi, sesi terapi wajib diselesaikan dalam tempo waktu maksimal 5 bulan semenjak tanggal pendaftaran. Bilamana masih terdapat sesi yang belum dilaksanakan melewati tempo waktu yang telah ditentukan, maka sesi yang masih tersisa dinyatakan hangus.</li>
+            <li>Klien menyatakan bahwa data yang diisi adalah benar.</li>
+            <li>Dengan menandatangani formulir ini, klien telah memahami dan menyetujui semua ketentuan yang tercantum dalam formulir ini.</li>
+          </ol>
+        </div>
+
+        <div class="field" style="margin-top:20px;">
+          <label>Nama Lengkap (sebagai Tanda Tangan Elektronik)</label>
+          <input type="text" id="namaTandaTangan" required>
+        </div>
+
+        <div class="agree-row">
+          <input type="checkbox" id="setuju" required>
+          <label for="setuju" style="text-transform:none;font-weight:400;opacity:1;">Saya menyatakan data yang saya isi adalah benar, dan saya memahami serta menyetujui seluruh syarat &amp; ketentuan di atas.</label>
+        </div>
+      </div>
+
+      <div class="cta-bar">
+        <button type="submit" class="submit-btn" id="submitBtn">Kirim &amp; Simpan Data</button>
+        <p class="error-msg" id="errorMsg">Terjadi kesalahan saat mengirim data. Silakan periksa koneksi internet dan coba lagi.</p>
+      </div>
+    </form>
+  </div>
+
+  <!-- SUMMARY / PRINT VIEW -->
+  <div id="summaryView" class="card">
+    <div class="print-sheet" id="printSheet">
+      <h2 class="doc-title">Formulir Intake &amp; Screening Klien</h2>
+      <p class="doc-sub">Darma Hipnoterapi — darmahipnoterapi.com · 087828827575</p>
+      <p class="doc-meta" id="docMeta"></p>
+
+      <dl class="print-grid" id="grid1"></dl>
+      <div class="print-section-title">Pemaparan Psikologis</div>
+      <dl class="print-grid" id="grid2"></dl>
+      <div class="print-section-title">Informasi Layanan</div>
+      <dl class="print-grid" id="grid3"></dl>
+
+      <div class="sig-block">
+        <div>
+          <div class="sig-line">Hipnoterapis<br>(R. Darmawan)</div>
+        </div>
+        <div>
+          <div class="sig-line" id="sigNama">Klien</div>
+        </div>
+      </div>
+
+      <footer class="brand-footer">Darma Hipnoterapi &middot; Jl. Pager Gunung No. 1, Lebakgede, Coblong, Kota Bandung</footer>
+    </div>
+
+    <div class="summary-actions no-print">
+      <button class="btn-new" id="newFormBtn" type="button">+ Formulir Baru</button>
+      <button class="btn-print" id="printBtn" type="button">Cetak / Print</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ====== KONFIGURASI ====== */
+/* Tempel URL Web App Google Apps Script (dari deployment sheet BARU) di sini */
+const GAS_URL = "PASTE_URL_WEB_APP_APPS_SCRIPT_DI_SINI";
+
+/* ====== PILL SELECTORS ====== */
+document.querySelectorAll('.pills').forEach(group => {
+  const isMulti = group.classList.contains('multi');
+  group.addEventListener('click', (e) => {
+    const pill = e.target.closest('.pill');
+    if(!pill) return;
+    if(isMulti){
+      pill.classList.toggle('active');
+    } else {
+      group.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    }
+    // handle "lainnya" reveal
+    const forKey = group.dataset.group;
+    const lainnyaInput = document.querySelector('.lainnya-input[data-for="'+forKey+'"]');
+    if(lainnyaInput){
+      const anyLainnyaActive = group.querySelector('.pill[data-lainnya="true"].active');
+      lainnyaInput.classList.toggle('show', !!anyLainnyaActive);
+    }
+  });
+});
+
+function getSingleValue(groupKey){
+  const group = document.querySelector('.pills[data-group="'+groupKey+'"]');
+  if(!group) return '';
+  const active = group.querySelector('.pill.active');
+  if(!active) return '';
+  if(active.dataset.lainnya === 'true'){
+    const input = document.querySelector('.lainnya-input[data-for="'+groupKey+'"]');
+    return input && input.value.trim() ? input.value.trim() : active.dataset.value;
+  }
+  return active.dataset.value;
+}
+
+function getMultiValue(groupKey){
+  const group = document.querySelector('.pills[data-group="'+groupKey+'"]');
+  if(!group) return '';
+  return Array.from(group.querySelectorAll('.pill.active')).map(p => p.dataset.value).join(', ');
+}
+
+/* ====== CONFIG WARNING ====== */
+if(GAS_URL.indexOf('PASTE_URL') !== -1){
+  document.getElementById('configWarning').style.display = 'block';
+}
+
+/* ====== SUBMIT ====== */
+const form = document.getElementById('intakeForm');
+const submitBtn = document.getElementById('submitBtn');
+const errorMsg = document.getElementById('errorMsg');
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  errorMsg.style.display = 'none';
+
+  const today = new Date();
+  const tanggalForm = today.toLocaleDateString('id-ID', { day:'2-digit', month:'long', year:'numeric' });
+
+  const data = {
+    namaKlien: document.getElementById('namaKlien').value.trim(),
+    keteranganKlien: getSingleValue('keteranganKlien'),
+    jenisKelamin: getSingleValue('jenisKelamin'),
+    status: getSingleValue('status'),
+    alamat: document.getElementById('alamat').value.trim(),
+    telepon: document.getElementById('telepon').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    tempatLahir: document.getElementById('tempatLahir').value.trim(),
+    tanggalLahir: document.getElementById('tanggalLahir').value,
+    keyakinan: getSingleValue('keyakinan'),
+    pendidikan: getSingleValue('pendidikan'),
+    pekerjaan: getSingleValue('pekerjaan'),
+    tenagaAhli: getSingleValue('tenagaAhli'),
+    minatUtama: getMultiValue('minatUtama'),
+    cerminanDiri: getMultiValue('cerminanDiri'),
+    tujuanSesi: document.getElementById('tujuanSesi').value.trim(),
+    sumberInfo: getSingleValue('sumberInfo'),
+    jenisLayanan: getSingleValue('jenisLayanan'),
+    caraPembayaran: getSingleValue('caraPembayaran'),
+    namaTandaTangan: document.getElementById('namaTandaTangan').value.trim(),
+    tanggalForm: tanggalForm
+  };
+
+  if(!data.namaKlien || !data.alamat || !data.telepon || !data.tujuanSesi || !data.namaTandaTangan){
+    errorMsg.textContent = 'Mohon lengkapi semua kolom wajib (bertanda field kosong).';
+    errorMsg.style.display = 'block';
+    return;
+  }
+  if(!document.getElementById('setuju').checked){
+    errorMsg.textContent = 'Mohon centang persetujuan syarat & ketentuan sebelum melanjutkan.';
+    errorMsg.style.display = 'block';
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Mengirim...';
+
+  try{
+    if(GAS_URL.indexOf('PASTE_URL') === -1){
+      await fetch(GAS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      });
+    }
+    renderSummary(data);
+  } catch(err){
+    errorMsg.textContent = 'Terjadi kesalahan saat mengirim data. Data tetap bisa dicetak secara manual.';
+    errorMsg.style.display = 'block';
+    renderSummary(data);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Kirim & Simpan Data';
+  }
+});
+
+function row(dt, dd){
+  return '<dt>'+dt+'</dt><dd>'+(dd && dd.length ? dd : '—')+'</dd>';
+}
+
+function renderSummary(data){
+  document.getElementById('docMeta').textContent = 'Bandung, ' + data.tanggalForm;
+
+  document.getElementById('grid1').innerHTML =
+    row('Nama Klien', data.namaKlien) +
+    row('Keterangan', data.keteranganKlien) +
+    row('Jenis Kelamin', data.jenisKelamin) +
+    row('Status', data.status) +
+    row('Alamat', data.alamat) +
+    row('Telepon', data.telepon) +
+    row('Email', data.email) +
+    row('Tempat/Tgl Lahir', [data.tempatLahir, data.tanggalLahir].filter(Boolean).join(', '));
+
+  document.getElementById('grid2').innerHTML =
+    row('Keyakinan', data.keyakinan) +
+    row('Pendidikan', data.pendidikan) +
+    row('Pekerjaan', data.pekerjaan) +
+    row('Tenaga Ahli Sebelumnya', data.tenagaAhli) +
+    row('Kekuatan & Minat', data.minatUtama) +
+    row('Cerminan Diri', data.cerminanDiri) +
+    row('Tujuan Sesi', data.tujuanSesi);
+
+  document.getElementById('grid3').innerHTML =
+    row('Sumber Info', data.sumberInfo) +
+    row('Jenis Layanan', data.jenisLayanan) +
+    row('Cara Pembayaran', data.caraPembayaran);
+
+  document.getElementById('sigNama').innerHTML = 'Klien<br>('+data.namaTandaTangan+')';
+
+  document.getElementById('formView').style.display = 'none';
+  document.getElementById('summaryView').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+document.getElementById('printBtn').addEventListener('click', () => window.print());
+document.getElementById('newFormBtn').addEventListener('click', () => {
+  document.getElementById('summaryView').style.display = 'none';
+  document.getElementById('formView').style.display = 'block';
+  form.reset();
+  document.querySelectorAll('.pill.active').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.lainnya-input').forEach(i => { i.classList.remove('show'); i.value=''; });
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+</script>
+</body>
+</html>
