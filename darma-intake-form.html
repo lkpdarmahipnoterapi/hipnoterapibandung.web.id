@@ -6,6 +6,7 @@
 <title>DARMA Hipnoterapi — Formulir Intake Klien</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   :root{
     --sage-deep:#4F6B58;
@@ -547,8 +548,10 @@
       <footer class="brand-footer">Darma Hipnoterapi &middot; Jl. Pager Gunung No. 1, Lebakgede, Coblong, Kota Bandung</footer>
     </div>
 
+    <p class="pdf-status no-print" id="pdfStatus" style="text-align:center;font-size:0.8rem;color:#4F6B58;margin:0 36px;"></p>
     <div class="summary-actions no-print">
       <button class="btn-new" id="newFormBtn" type="button">+ Formulir Baru</button>
+      <button class="btn-new" id="downloadPdfBtn" type="button">Unduh PDF</button>
       <button class="btn-print" id="printBtn" type="button">Cetak / Print</button>
     </div>
   </div>
@@ -655,18 +658,35 @@ form.addEventListener('submit', async function(e){
   submitBtn.disabled = true;
   submitBtn.textContent = 'Mengirim...';
 
+  // Generate PDF di browser klien, lalu sertakan sebagai base64 agar disimpan ke Drive oleh Apps Script
+  let pdfFileName = 'Intake-' + data.namaKlien.replace(/[^a-zA-Z0-9]+/g,'_') + '-' + Date.now() + '.pdf';
+  let pdfBase64 = '';
+  try{
+    const doc = buildPdfDoc(data);
+    pdfBase64 = doc.output('datauristring').split(',')[1];
+    window.__lastPdfDoc = doc; // simpan untuk tombol "Unduh PDF"
+    window.__lastPdfFileName = pdfFileName;
+  } catch(pdfErr){
+    console.error('Gagal membuat PDF di browser:', pdfErr);
+  }
+
+  const payload = Object.assign({}, data, { pdfBase64: pdfBase64, pdfFileName: pdfFileName });
+
   try{
     if(GAS_URL.indexOf('PASTE_URL') === -1){
       await fetch(GAS_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload)
       });
+      document.getElementById('pdfStatus').textContent = 'PDF sedang disimpan otomatis ke Google Drive & tercatat di Google Sheets.';
+    } else {
+      document.getElementById('pdfStatus').textContent = 'GAS_URL belum diisi — PDF hanya bisa diunduh manual, belum tersimpan otomatis.';
     }
     renderSummary(data);
   } catch(err){
-    errorMsg.textContent = 'Terjadi kesalahan saat mengirim data. Data tetap bisa dicetak secara manual.';
+    errorMsg.textContent = 'Terjadi kesalahan saat mengirim data. Data tetap bisa dicetak/diunduh secara manual.';
     errorMsg.style.display = 'block';
     renderSummary(data);
   } finally {
@@ -674,6 +694,86 @@ form.addEventListener('submit', async function(e){
     submitBtn.textContent = 'Kirim & Simpan Data';
   }
 });
+
+/* ====== PDF GENERATION (jsPDF) ====== */
+function buildPdfDoc(data){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+  const pageW = doc.internal.pageSize.getWidth();
+  const pageH = doc.internal.pageSize.getHeight();
+  const margin = 50;
+  let y = 60;
+
+  function checkPage(minSpace){
+    if(y > pageH - (minSpace || 60)){ doc.addPage(); y = 60; }
+  }
+  function sectionTitle(text){
+    checkPage(80);
+    y += 8;
+    doc.setFont('times','italic'); doc.setFontSize(13);
+    doc.setTextColor(79,107,88);
+    doc.text(text, margin, y);
+    doc.setDrawColor(210,210,210);
+    doc.line(margin, y + 5, pageW - margin, y + 5);
+    y += 22;
+  }
+  function row(label, value){
+    checkPage(40);
+    const val = (value && String(value).trim().length) ? String(value) : '-';
+    const lines = doc.splitTextToSize(val, pageW - margin - 200);
+    doc.setFont('helvetica','normal'); doc.setFontSize(10);
+    doc.setTextColor(130,130,130);
+    doc.text(label, margin, y);
+    doc.setTextColor(45,58,52);
+    doc.text(lines, margin + 190, y);
+    y += 16 * lines.length;
+  }
+
+  doc.setFont('times','bold'); doc.setFontSize(18);
+  doc.setTextColor(45,58,52);
+  doc.text('Formulir Intake & Screening Klien', pageW/2, y, { align:'center' });
+  y += 20;
+  doc.setFont('helvetica','normal'); doc.setFontSize(10);
+  doc.setTextColor(79,107,88);
+  doc.text('Darma Hipnoterapi  -  darmahipnoterapi.com  -  087828827575', pageW/2, y, { align:'center' });
+  y += 16;
+  doc.setTextColor(90,90,90);
+  doc.text('Bandung, ' + data.tanggalForm, pageW/2, y, { align:'center' });
+  y += 20;
+
+  sectionTitle('Informasi Klien');
+  row('Nama Klien', data.namaKlien);
+  row('Keterangan', data.keteranganKlien);
+  row('Jenis Kelamin', data.jenisKelamin);
+  row('Status', data.status);
+  row('Alamat', data.alamat);
+  row('Telepon', data.telepon);
+  row('Email', data.email);
+  row('Tempat/Tgl Lahir', [data.tempatLahir, data.tanggalLahir].filter(Boolean).join(', '));
+
+  sectionTitle('Pemaparan Psikologis');
+  row('Keyakinan', data.keyakinan);
+  row('Pendidikan', data.pendidikan);
+  row('Pekerjaan', data.pekerjaan);
+  row('Tenaga Ahli Sebelumnya', data.tenagaAhli);
+  row('Kekuatan & Minat', data.minatUtama);
+  row('Cerminan Diri', data.cerminanDiri);
+  row('Tujuan Sesi', data.tujuanSesi);
+
+  sectionTitle('Informasi Layanan');
+  row('Sumber Info', data.sumberInfo);
+  row('Jenis Layanan', data.jenisLayanan);
+  row('Cara Pembayaran', data.caraPembayaran);
+
+  y += 40;
+  checkPage(80);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10);
+  doc.setTextColor(45,58,52);
+  doc.text('Hipnoterapis', margin + 60, y, { align:'center' });
+  doc.text('Klien (' + data.namaTandaTangan + ')', pageW - margin - 90, y, { align:'center' });
+
+  return doc;
+}
 
 function row(dt, dd){
   return '<dt>'+dt+'</dt><dd>'+(dd && dd.length ? dd : '—')+'</dd>';
@@ -714,9 +814,15 @@ function renderSummary(data){
 }
 
 document.getElementById('printBtn').addEventListener('click', () => window.print());
+document.getElementById('downloadPdfBtn').addEventListener('click', () => {
+  if(window.__lastPdfDoc){
+    window.__lastPdfDoc.save(window.__lastPdfFileName || 'Intake-Klien.pdf');
+  }
+});
 document.getElementById('newFormBtn').addEventListener('click', () => {
   document.getElementById('summaryView').style.display = 'none';
   document.getElementById('formView').style.display = 'block';
+  document.getElementById('pdfStatus').textContent = '';
   form.reset();
   document.querySelectorAll('.pill.active').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.lainnya-input').forEach(i => { i.classList.remove('show'); i.value=''; });
