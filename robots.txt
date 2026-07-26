@@ -1,4 +1,26 @@
+# robots.txt — Hipnoterapi Bandung
+# Domain: hipnoterapibandung.web.id
+# Updated: 2026-07-08
+
 User-agent: *
 Allow: /
 
+# Izinkan semua halaman utama
+Allow: /hipnoterapi-bandung
+Allow: /hipnoterapi-cimahi
+Allow: /hipnoterapi-lembang
+Allow: /hipnoterapi-terdekat
+Allow: /hipnoterapi-kecemasan
+Allow: /hipnoterapi-trauma
+Allow: /hipnoterapi-inner-child
+Allow: /hipnoterapi-insomnia
+Allow: /hipnoterapi-overthinking
+Allow: /tentang-praktisi
+Allow: /paket-investasi
+Allow: /cara-kerja
+Allow: /panduan-hipnoterapi
+Allow: /testimoni
+Allow: /kontak
+
+# Sitemap
 Sitemap: https://hipnoterapibandung.web.id/sitemap.xml
