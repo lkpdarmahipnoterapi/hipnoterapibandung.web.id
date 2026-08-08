@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnosa Kondisi Anda — Hipnoterapi Bandung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f2eee6 0%, #f5f3f0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #2d3a34;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(45, 58, 52, 0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4F6B58 0%, #2D3A34 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: #f2eee6;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 15px;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* INTRO */
+        .intro-text {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .intro-text h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .intro-text p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .benefits {
+            background: #f9f8f6;
+            padding: 16px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* PROGRESS */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e8e6e3;
+            border-radius: 2px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #4F6B58;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* QUESTION */
+        .question-num {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .question-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3a34;
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            padding: 14px 16px;
+            background: #f9f8f6;
+            border: 2px solid #e8e6e3;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 15px;
+            color: #555;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            border-color: #4F6B58;
+            background: #f0f4f1;
+        }
+
+        .option-btn.selected {
+            background: #4F6B58;
+            color: #f2eee6;
+            border-color: #4F6B58;
+            box-shadow: 0 8px 20px rgba(79, 107, 88, 0.2);
+        }
+
+        /* FORM */
+        .form-section {
+            text-align: center;
+        }
+
+        .form-section h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #2d3a34;
+        }
+
+        .form-section p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #2d3a34;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border: 2px solid #e8e6e3;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4F6B58;
+            box-shadow: 0 0 0 3px rgba(79, 107, 88, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 12px;
+            background: #f9f8f6;
+            border-radius: 8px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 4px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-size: 13px;
+            cursor: pointer;
+            color: #555;
+        }
+
+        .form-error {
+            color: #d32f2f;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        /* RESULT */
+        .result-icon {
+            font-size: 60px;
+            margin-bottom: 16px;
+        }
+
+        .result-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3a34;
+            margin-bottom: 12px;
+        }
+
+        .result-desc {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .score-info {
+            background: #f0f4f1;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .scores-breakdown {
+            background: #f9f8f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e8e6e3;
+        }
+
+        .score-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .score-label {
+            font-weight: 500;
+            color: #2d3a34;
+        }
+
+        .score-value {
+            background: #4F6B58;
+            color: #f2eee6;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .insight-box {
+            background: #f0f4f1;
+            border-left: 4px solid #4F6B58;
+            padding: 16px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        .pricing {
+            background: linear-gradient(135deg, #4F6B58 0%, #2D3A34 100%);
+            color: #f2eee6;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .pricing-label {
+            font-size: 12px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .pricing-original {
+            font-size: 13px;
+            opacity: 0.8;
+            text-decoration: line-through;
+            margin-bottom: 4px;
+        }
+
+        .pricing-promo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .pricing-detail {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .social-proof {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            padding: 16px 0;
+            border-top: 1px solid #e8e6e3;
+            margin-top: 20px;
+        }
+
+        .proof-stat {
+            font-weight: 600;
+            color: #2d3a34;
+        }
+
+        /* BUTTONS */
+        .button {
+            width: 100%;
+            padding: 14px;
+            background: #4F6B58;
+            color: #f2eee6;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .button:hover {
+            background: #2D3A34;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 107, 88, 0.2);
+        }
+
+        .button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+            transform: none;
+        }
+
+        .button-whatsapp {
+            background: #25D366;
+        }
+
+        .button-whatsapp:hover {
+            background: #1EBF56;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 30px 20px;
+            }
+
+            .question-text {
+                font-size: 18px;
+            }
+
+            .option-btn {
+                font-size: 14px;
+                padding: 12px 14px;
+            }
+
+            .result-title {
+                font-size: 20px;
+            }
+
+            .pricing-promo {
+                font-size: 24px;
+            }
+
+            .social-proof {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Diagnosa Kondisi Anda</h1>
+            <p>Ketahui masalah emosional yang sebenarnya, dapatkan solusi yang tepat.</p>
+        </div>
+
+        <div class="content">
+            <!-- INTRO SECTION -->
+            <div class="section active" id="introSection">
+                <div class="intro-text">
+                    <h2>Mulai Perjalanan Transformasi Anda</h2>
+                    <p>Quiz ini dirancang untuk memahami kondisi Anda dengan lebih baik, sehingga kami bisa memberikan solusi hipnoterapi yang paling sesuai.</p>
+                </div>
+
+                <div class="benefits">
+                    <div class="benefit-item">✓ Gratis, tanpa komitmen apapun</div>
+                    <div class="benefit-item">✓ Hasil instant & personalized</div>
+                    <div class="benefit-item">✓ Dianalisis langsung oleh praktisi berpengalaman</div>
+                </div>
+
+                <button class="button" onclick="startQuiz()">Mulai Quiz (2 Menit)</button>
+            </div>
+
+            <!-- QUIZ SECTION -->
+            <div class="section" id="quizSection">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <!-- Q1 -->
+                <div id="q1" class="quiz-question">
+                    <div class="question-num">Pertanyaan 1 dari 4</div>
+                    <div class="question-text">Kondisi yang paling sering Anda alami akhir-akhir ini?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectOption('q1', {insomnia: 3, anxiety: 0, exhaustion: 0, trauma: 0})">Sulit tidur atau tidur tidak nyenyak</button>
+                        <button class="option-btn" onclick="selectOption('q1', {insomnia: 0, anxiety: 3, exhaustion: 0, trauma: 0})">Pikiran berputar, overthinking, cemas</button>
+                        <button class="option-btn" onclick="selectOption('q1', {insomnia: 0, anxiety: 0, exhaustion: 3, trauma: 0})">Lelah emosional, merasa kosong</button>
+                        <button class="option-btn" onclick="selectOption('q1', {insomnia: 0, anxiety: 0, exhaustion: 0, trauma: 3})">Trauma atau luka masa lalu yang belum selesai</button>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div id="q2" class="quiz-question" style="display: none;">
+                    <div class="question-num">Pertanyaan 2 dari 4</div>
+                    <div class="question-text">Berapa lama kondisi ini berlangsung?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectOption('q2', {insomnia: 1, anxiety: 1, exhaustion: 1, trauma: 1})">Baru beberapa minggu (relatif baru)</button>
+                        <button class="option-btn" onclick="selectOption('q2', {insomnia: 2, anxiety: 2, exhaustion: 2, trauma: 2})">Beberapa bulan</button>
+                        <button class="option-btn" onclick="selectOption('q2', {insomnia: 3, anxiety: 3, exhaustion: 3, trauma: 3})">Bertahun-tahun, sudah terbiasa</button>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div id="q3" class="quiz-question" style="display: none;">
+                    <div class="question-num">Pertanyaan 3 dari 4</div>
+                    <div class="question-text">Hal apa yang paling Anda inginkan?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectOption('q3', {insomnia: 2, anxiety: 2, exhaustion: 2, trauma: 1})">Relief/ketenangan segera</button>
+                        <button class="option-btn" onclick="selectOption('q3', {insomnia: 1, anxiety: 2, exhaustion: 2, trauma: 3})">Memahami akar masalahnya</button>
+                        <button class="option-btn" onclick="selectOption('q3', {insomnia: 1, anxiety: 1, exhaustion: 3, trauma: 3})">Transformasi jangka panjang</button>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div id="q4" class="quiz-question" style="display: none;">
+                    <div class="question-num">Pertanyaan 4 dari 4</div>
+                    <div class="question-text">Sudah pernah mencoba solusi lain?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectOption('q4', {insomnia: 1, anxiety: 1, exhaustion: 1, trauma: 1})">Belum, ini adalah pertama kali</button>
+                        <button class="option-btn" onclick="selectOption('q4', {insomnia: 2, anxiety: 2, exhaustion: 2, trauma: 2})">Ya, tapi hasilnya terbatas</button>
+                        <button class="option-btn" onclick="selectOption('q4', {insomnia: 2, anxiety: 2, exhaustion: 2, trauma: 3})">Ya, tapi tidak ada yang berhasil</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM SECTION -->
+            <div class="section" id="formSection">
+                <div class="form-section">
+                    <h2>Terima Kasih! Sekarang, Kami Ingin Mengenali Anda Lebih Baik</h2>
+                    <p>Isi data berikut supaya kami bisa memberikan rekomendasi yang paling sesuai dengan kebutuhan Anda.</p>
+                </div>
+
+                <form id="contactForm" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required placeholder="Contoh: Budi Santoso">
+                        <div class="form-error" id="namaError">Nama harus diisi</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="contoh@email.com">
+                        <div class="form-error" id="emailError">Email tidak valid</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="noTlp">No. Telepon / WhatsApp *</label>
+                        <input type="tel" id="noTlp" name="noTlp" required placeholder="Contoh: 081234567890">
+                        <div class="form-error" id="noTlpError">No. telepon harus diisi</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pekerjaan">Pekerjaan / Profesi *</label>
+                        <select id="pekerjaan" name="pekerjaan" required>
+                            <option value="">-- Pilih --</option>
+                            <option value="Karyawan Swasta">Karyawan Swasta</option>
+                            <option value="PNS/Pegawai Negeri">PNS/Pegawai Negeri</option>
+                            <option value="Wiraswasta/Pengusaha">Wiraswasta/Pengusaha</option>
+                            <option value="Profesional (Dokter, Lawyer, dll)">Profesional (Dokter, Lawyer, dll)</option>
+                            <option value="Pelajar/Mahasiswa">Pelajar/Mahasiswa</option>
+                            <option value="Ibu Rumah Tangga">Ibu Rumah Tangga</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                        <div class="form-error" id="pekerjaanError">Pekerjaan harus dipilih</div>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">Ya, kirimkan tips dan insights tentang emotional healing ke email saya</label>
+                    </div>
+
+                    <button type="submit" class="button" id="submitBtn">Lihat Hasil & Rekomendasi →</button>
+                </form>
+            </div>
+
+            <!-- RESULT SECTION -->
+            <div class="section" id="resultSection">
+                <div style="text-align: center;">
+                    <div class="result-icon" id="resultIcon">😌</div>
+                    <div class="result-title" id="resultTitle">Hasil Analisis Anda</div>
+                    <div class="result-desc" id="resultDesc">Berdasarkan jawaban Anda...</div>
+
+                    <div class="score-info">
+                        <strong id="scoreText">Score: 0/12</strong>
+                    </div>
+
+                    <div class="scores-breakdown" id="scoresBreakdown"></div>
+
+                    <div class="insight-box" id="resultInsight">
+                        Loading hasil Anda...
+                    </div>
+
+                    <div class="pricing">
+                        <div class="pricing-label">Paket Promo Spesial</div>
+                        <div class="pricing-original">Rp4.500.000</div>
+                        <div class="pricing-promo">Rp3.500.000</div>
+                        <div class="pricing-detail">untuk 3 sesi hipnoterapi (hemat Rp1.000.000)</div>
+                    </div>
+
+                    <button class="button button-whatsapp" id="whatsappBtn">💬 Booking via WhatsApp</button>
+
+                    <div class="social-proof">
+                        <div>
+                            <div class="proof-stat">⭐ 4.9</div>
+                            <div>Rating</div>
+                        </div>
+                        <div>
+                            <div class="proof-stat">15+</div>
+                            <div>Tahun Pengalaman</div>
+                        </div>
+                        <div>
+                            <div class="proof-stat">35+</div>
+                            <div>Review Terverifikasi</div>
+                        </div>
+                    </div>
+
+                    <div class="footer-text">
+                        Hubungi kami via WhatsApp untuk konsultasi awal gratis dan jadwalkan sesi Anda.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        let formData = {};
+        const scores = {
+            insomnia: 0,
+            anxiety: 0,
+            exhaustion: 0,
+            trauma: 0
+        };
+
+        const profiles = {
+            insomnia: {
+                icon: '😴',
+                title: 'Gangguan Tidur & Kelelahan',
+                desc: 'Tubuh capek, tapi pikiran terus "menyala" di malam hari.',
+                insight: 'Tidur nyenyak bukan hanya tentang istirahat fisik, tapi juga ketenangan pikiran. Hipnoterapi membantu mengatur pola tidur dengan menenangkan sistem saraf bawah sadar Anda. Kebanyakan klien merasakan perubahan signifikan dalam 1-2 sesi pertama.',
+                msg: 'Halo! Saya tertarik untuk mengatasi gangguan tidur saya. Bisa konsultasi kapan?'
+            },
+            anxiety: {
+                icon: '🌀',
+                title: 'Kecemasan & Overthinking',
+                desc: 'Pikiran berputar tanpa bisa berhenti, bahkan di hal-hal kecil.',
+                insight: 'Overthinking adalah cara pikiran bawah sadar melindungi Anda — tapi proteksi itu sudah berlebihan. Hipnoterapi membantu re-program pola pikir dengan aman dan efektif. Anda akan belajar cara mematikan loop pikiran yang tidak produktif.',
+                msg: 'Halo! Saya sering overthinking dan cemas. Apakah hipnoterapi bisa membantu?'
+            },
+            exhaustion: {
+                icon: '💔',
+                title: 'Kelelahan Emosional',
+                desc: 'Merasa kosong dan kehilangan semangat untuk hal-hal yang dulu Anda nikmati.',
+                insight: 'Kelelahan emosional adalah tanda bahwa Anda perlu reconnect dengan inner self. Hipnoterapi fokus pada emotional healing — bukan hanya gejala, tapi akarnya. Banyak klien merasakan hidup lagi setelah fase ini.',
+                msg: 'Halo! Saya merasa kelelahan emosional dan butuh bantuan healing. Bagaimana prosesnya?'
+            },
+            trauma: {
+                icon: '🔓',
+                title: 'Trauma & Luka Masa Lalu',
+                desc: 'Ada peristiwa atau luka masa lalu yang masih mempengaruhi Anda hari ini.',
+                insight: 'Trauma tersimpan dalam sistem saraf Anda. Hipnoterapi klinis membantu memproses trauma dengan aman, sehingga tidak lagi mempengaruhi pilihan dan emosi Anda sekarang. Transformasi jangka panjang dimulai dari sini.',
+                msg: 'Halo! Saya memiliki trauma masa lalu yang ingin diproses. Bisa membantu?'
+            }
+        };
+
+        function startQuiz() {
+            document.getElementById('introSection').classList.remove('active');
+            document.getElementById('quizSection').classList.add('active');
+            currentQuestion = 1;
+            updateProgress();
+            document.getElementById('q1').style.display = 'block';
+        }
+
+        function selectOption(qNum, pointsObj) {
+            for (let key in pointsObj) {
+                scores[key] += pointsObj[key];
+            }
+
+            const buttons = document.querySelectorAll(`#${qNum} .option-btn`);
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+
+            setTimeout(() => {
+                if (qNum === 'q4') {
+                    showForm();
+                } else {
+                    const nextQ = qNum === 'q1' ? 'q2' : qNum === 'q2' ? 'q3' : 'q4';
+                    document.getElementById(qNum).style.display = 'none';
+                    document.getElementById(nextQ).style.display = 'block';
+                    currentQuestion++;
+                    updateProgress();
+                }
+            }, 200);
+        }
+
+        function updateProgress() {
+            const progress = (currentQuestion / 4) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function showForm() {
+            document.getElementById('quizSection').classList.remove('active');
+            document.getElementById('formSection').classList.add('active');
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            const nama = document.getElementById('nama').value;
+            const email = document.getElementById('email').value;
+            const noTlp = document.getElementById('noTlp').value;
+            const pekerjaan = document.getElementById('pekerjaan').value;
+            const newsletter = document.getElementById('newsletter').checked;
+
+            if (!nama || !email || !noTlp || !pekerjaan) {
+                alert('Mohon lengkapi semua field');
+                return;
+            }
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> Memproses...';
+
+            // Build data payload
+            const payload = {
+                timestamp: new Date().toLocaleString('id-ID'),
+                nama: nama,
+                email: email,
+                noTlp: noTlp,
+                pekerjaan: pekerjaan,
+                newsletter: newsletter ? 'Ya' : 'Tidak',
+                insomnia_score: scores.insomnia,
+                anxiety_score: scores.anxiety,
+                exhaustion_score: scores.exhaustion,
+                trauma_score: scores.trauma
+            };
+
+            // Send to Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbztbT39hkJfQhU79dWi3d1F1TXbF9dIljCb0pf7YG3XM9mF8yIC4iNZvmRP-e-jAjM/exec', {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                mode: 'no-cors'
+            })
+            .then(() => {
+                formData = payload;
+                showResult();
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                formData = payload;
+                showResult();
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerHTML = 'Lihat Hasil & Rekomendasi →';
+            });
+        }
+
+        function showResult() {
+            document.getElementById('formSection').classList.remove('active');
+            document.getElementById('resultSection').classList.add('active');
+            analyzeAndDisplay();
+        }
+
+        function analyzeAndDisplay() {
+            let maxScore = 0;
+            let primaryIssue = 'anxiety';
+            
+            for (let key in scores) {
+                if (scores[key] > maxScore) {
+                    maxScore = scores[key];
+                    primaryIssue = key;
+                }
+            }
+
+            const result = profiles[primaryIssue];
+
+            document.getElementById('resultIcon').textContent = result.icon;
+            document.getElementById('resultTitle').textContent = result.title;
+            document.getElementById('resultDesc').textContent = result.desc;
+            document.getElementById('resultInsight').textContent = result.insight;
+
+            const breakdown = document.getElementById('scoresBreakdown');
+            breakdown.innerHTML = `
+                <div style="text-align: center; margin-bottom: 12px; font-weight: 600;">Analisis Detail Anda</div>
+                <div class="score-row">
+                    <span class="score-label">😴 Gangguan Tidur</span>
+                    <span class="score-value">${scores.insomnia}/10</span>
+                </div>
+                <div class="score-row">
+                    <span class="score-label">🌀 Kecemasan</span>
+                    <span class="score-value">${scores.anxiety}/10</span>
+                </div>
+                <div class="score-row">
+                    <span class="score-label">💔 Kelelahan Emosional</span>
+                    <span class="score-value">${scores.exhaustion}/10</span>
+                </div>
+                <div class="score-row">
+                    <span class="score-label">🔓 Trauma</span>
+                    <span class="score-value">${scores.trauma}/10</span>
+                </div>
+            `;
+
+            const totalScore = scores.insomnia + scores.anxiety + scores.exhaustion + scores.trauma;
+            document.getElementById('scoreText').textContent = `Total Score: ${totalScore}/12 — Masalah Utama: ${result.title}`;
+
+            const waUrl = `https://wa.me/6281914333399?text=${encodeURIComponent(result.msg)}`;
+            document.getElementById('whatsappBtn').onclick = () => window.open(waUrl, '_blank');
+        }
+
+        document.getElementById('introSection').classList.add('active');
+    </script>
+</body>
+</html>
