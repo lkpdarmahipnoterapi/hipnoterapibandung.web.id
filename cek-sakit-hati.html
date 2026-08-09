@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Tes Tingkat Sakit Hati DARMA™ | Tes Gratis Luka Emosional dari Hubungan</title>
-<meta name="description" content="Tes gratis 3-5 menit untuk mengetahui seberapa dalam luka sakit hati yang masih Anda bawa — dari patah hati, pengkhianatan, atau hubungan yang berakhir buruk. Dapatkan profil dan analisis personal dari DARMA Hipnoterapi." />
+<title>Tes Tingkat Sakit Hati Hipnoterapi Bandung™ | Tes Gratis Luka Emosional dari Hubungan</title>
+<meta name="description" content="Tes gratis 3-5 menit untuk mengetahui seberapa dalam luka sakit hati yang masih Anda bawa — dari patah hati, pengkhianatan, atau hubungan yang berakhir buruk. Dapatkan profil dan analisis personal dari Hipnoterapi Bandung." />
 <meta name="robots" content="index, follow" />
 
 <!-- Open Graph -->
-<meta property="og:title" content="Tes Tingkat Sakit Hati DARMA™" />
+<meta property="og:title" content="Tes Tingkat Sakit Hati Hipnoterapi Bandung™" />
 <meta property="og:description" content="Apakah luka dari hubungan masa lalu masih memengaruhi cara Anda mencintai dan mempercayai saat ini? Cari tahu dalam 3-5 menit." />
 <meta property="og:type" content="website" />
 
@@ -403,6 +403,35 @@
     .scale-row{ grid-template-columns: repeat(5, 1fr); gap: 5px; }
     .scale-opt label{ font-size: 10px; padding: 8px 2px; min-height:48px;}
   }
+
+  .btn.lega{
+    background: #C49A6C;
+    margin-bottom: 12px;
+  }
+  .btn.lega:hover{ background: #b08858; }
+  .btn.wa-secondary{
+    background: transparent;
+    color: var(--sage-deep);
+    border: 1.5px solid var(--sage-deep);
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+  .btn.wa-secondary:hover{ background: rgba(79,107,88,0.07); }
+  .cta-label{
+    font-size: 13px;
+    color: #5b655f;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .cta-note{
+    font-size: 12px;
+    color: #8a9088;
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
 </style>
 </head>
 <body>
@@ -413,7 +442,7 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero-section">
-    <span class="eyebrow">DARMA Hipnoterapi</span>
+    <span class="eyebrow">Hipnoterapi Bandung</span>
     <h1>Tes Tingkat Sakit Hati™</h1>
     <p class="lead">Apakah luka dari hubungan atau pengkhianatan masa lalu sudah benar-benar selesai — atau masih diam-diam memengaruhi cara Anda mencintai dan mempercayai saat ini?</p>
 
@@ -430,7 +459,7 @@
         <li><span class="check">✓</span> 20 pertanyaan singkat berbasis 5 dimensi luka emosional</li>
         <li><span class="check">✓</span> Hasil berupa profil personal, bukan sekadar angka</li>
         <li><span class="check">✓</span> Analisis pola luka yang relevan dengan kondisi Anda</li>
-        <li><span class="check">✓</span> Rekomendasi langkah berikutnya dari tim DARMA</li>
+        <li><span class="check">✓</span> Rekomendasi langkah berikutnya dari tim Hipnoterapi Bandung</li>
       </ul>
     </div>
   </section>
@@ -506,7 +535,7 @@
         <div class="err-msg">Silakan pilih salah satu</div>
       </div>
 
-      <p class="privacy-note">Data Anda hanya digunakan untuk memberikan hasil tes dan konsultasi dari tim DARMA. Tidak akan dibagikan ke pihak lain.</p>
+      <p class="privacy-note">Data Anda hanya digunakan untuk memberikan hasil tes dan konsultasi dari tim Hipnoterapi Bandung. Tidak akan dibagikan ke pihak lain.</p>
 
       <button class="btn full" id="submitBtn" onclick="submitLead()">Lihat Hasil Tes Saya</button>
     </div>
@@ -530,14 +559,12 @@
 
       <div class="dim-bars" id="dimBars"></div>
 
-      <a class="btn wa full" id="waBtn" href="#" target="_blank" rel="noopener">
-        🟢 Konsultasikan Hasil Saya via WhatsApp
-      </a>
+      <div id="ctaContainer"></div>
     </div>
   </section>
 
   <footer>
-    DARMA Hipnoterapi · Emotional Healing & Subconscious Transformation<br/>
+    Hipnoterapi Bandung · Emotional Healing & Subconscious Transformation<br/>
     Jl. Pager Gunung No. 1, Lebakgede, Coblong, Kota Bandung
   </footer>
 
@@ -548,8 +575,8 @@
    KONFIGURASI — UBAH BAGIAN INI SESUAI KEBUTUHAN
    ============================================================ */
 const CONFIG = {
-  WA_NUMBER: "6287828827575", // format internasional tanpa + dan tanpa 0 di depan
-  GAS_URL: "https://script.google.com/macros/s/AKfycbztbT39hkJfQhU79dWi3d1F1TXbF9dIljCb0pf7YG3XM9mF8yIC4iNZvmRP-e-jAjM/exec", // ganti dengan URL deployment Apps Script (boleh sama dengan tes DARMA lainnya)
+  WA_NUMBER: "6281914333399", // format internasional tanpa + dan tanpa 0 di depan
+  GAS_URL: "https://script.google.com/macros/s/AKfycbztbT39hkJfQhU79dWi3d1F1TXbF9dIljCb0pf7YG3XM9mF8yIC4iNZvmRP-e-jAjM/exec", // ganti dengan URL deployment Apps Script (boleh sama dengan tes Hipnoterapi Bandung lainnya)
   TEST_NAME: "Sakit Hati"
 };
 
@@ -775,7 +802,7 @@ function showResult(result){
   document.getElementById('profileName').textContent = result.profile.name;
   document.getElementById('profileDesc').textContent = result.profile.desc;
   document.getElementById('insightText1').textContent = result.profile.insight;
-  document.getElementById('insightText2').textContent = `Berdasarkan hasil tes, tingkat luka sakit hati Anda berada pada kategori "${result.kategori}". Konsultasi dengan tim DARMA dapat membantu memahami akar emosional dari pengalaman tersebut secara lebih spesifik.`;
+  document.getElementById('insightText2').textContent = `Berdasarkan hasil tes, tingkat luka sakit hati Anda berada pada kategori "${result.kategori}". Konsultasi dengan tim Hipnoterapi Bandung dapat membantu memahami akar emosional dari pengalaman tersebut secara lebih spesifik.`;
 
   // dimension bars
   const dimBarsHtml = Object.keys(result.dims).map(dim => {
@@ -789,10 +816,41 @@ function showResult(result){
   }).join('');
   document.getElementById('dimBars').innerHTML = dimBarsHtml;
 
-  // WA button — pesan dibuat singkat & natural dengan line break agar nyaman dibaca di kolom chat WA
-  const waMessage = `Halo DARMA, saya ${leadData.nama}.\nSaya baru menyelesaikan Tes Tingkat Sakit Hati.\n\nHasil saya: ${result.profile.name}\nSkor: ${result.totalScore}/100 (${result.kategori})\n\nSaya ingin konsultasi lebih lanjut mengenai hasil ini.`;
+  // CTA dinamis: skor < 80 → produk LEGA, skor >= 80 → konsultasi/terapi via WA
+  const waMessage = `Halo Hipnoterapi Bandung, saya ${leadData.nama}.\nSaya baru menyelesaikan Tes Tingkat Sakit Hati.\n\nHasil saya: ${result.profile.name}\nSkor: ${result.totalScore}/100 (${result.kategori})\n\nSaya ingin mendaftar untuk sesi terapi.`;
+  const waMessageKonsul = `Halo Hipnoterapi Bandung, saya ${leadData.nama}.\nSaya baru menyelesaikan Tes Tingkat Sakit Hati.\n\nHasil saya: ${result.profile.name}\nSkor: ${result.totalScore}/100 (${result.kategori})\n\nSaya ingin konsultasi lebih lanjut mengenai hasil ini.`;
   const waUrl = `https://wa.me/${CONFIG.WA_NUMBER}?text=${encodeURIComponent(waMessage)}`;
-  document.getElementById('waBtn').href = waUrl;
+  const waUrlKonsul = `https://wa.me/${CONFIG.WA_NUMBER}?text=${encodeURIComponent(waMessageKonsul)}`;
+  const ctaContainer = document.getElementById('ctaContainer');
+
+  if(result.totalScore >= 80){
+    // Skor tinggi → dorong ke konsultasi + sesi terapi
+    ctaContainer.innerHTML = `
+      <p class="cta-label">Langkah selanjutnya untuk Anda</p>
+      <a class="btn wa full" href="${waUrl}" target="_blank" rel="noopener">
+        🟢 Saya Siap Memulai Sesi Terapi
+      </a>
+      <p class="cta-note">
+        Hasil Anda menunjukkan bahwa kondisi ini layak mendapat perhatian lebih dalam.<br/>
+        Tim Hipnoterapi Bandung siap menemani Anda melalui proses pemulihan secara personal.
+      </p>
+    `;
+  } else {
+    // Skor < 80 → tawarkan produk LEGA dulu, WA sebagai pilihan kedua
+    ctaContainer.innerHTML = `
+      <p class="cta-label">Rekomendasi untuk Anda</p>
+      <a class="btn lega full" href="https://lynk.id/hipnoterapibandung/j7zo04k10wky" target="_blank" rel="noopener">
+        🌿 Coba Program LEGA — Mulai dari Rumah
+      </a>
+      <p class="cta-note">
+        Program LEGA dirancang khusus sebagai langkah awal yang bisa Anda jalani secara mandiri,<br/>
+        kapan saja dan di mana saja — untuk mulai meringankan beban emosional Anda.
+      </p>
+      <a class="btn wa-secondary full" href="${waUrlKonsul}" target="_blank" rel="noopener" style="margin-top:10px;">
+        💬 Atau Konsultasikan Dulu via WhatsApp
+      </a>
+    `;
+  }
 }
 
 /* ============================================================
@@ -837,7 +895,7 @@ function sendToGoogleSheets(lead, result){
   })
   .then(res => {
     if(res.type === 'opaque'){
-      showSyncStatus('ok', 'Data terkirim ke sistem DARMA.');
+      showSyncStatus('ok', 'Data terkirim ke sistem Hipnoterapi Bandung.');
       return null;
     }
     return res.text();
@@ -847,7 +905,7 @@ function sendToGoogleSheets(lead, result){
     try {
       const json = JSON.parse(text);
       if(json.success){
-        showSyncStatus('ok', 'Data tersimpan ke sistem DARMA.');
+        showSyncStatus('ok', 'Data tersimpan ke sistem Hipnoterapi Bandung.');
       } else {
         showSyncStatus('error', 'Tersimpan tapi ada catatan dari server: ' + (json.error || 'unknown error'));
       }
