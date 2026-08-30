@@ -5,119 +5,561 @@
   <!-- ============================================
        Hipnoterapi Bandung — sitemap.xml
        Domain  : hipnoterapibandung.web.id
-       Updated : 2026-07-08
-       Total   : 18 URLs
+       Updated : 2026-08-30
+       Total   : 79 URLs
        ============================================ -->
 
-  <!-- ── CORE PAGES ── -->
-  <!-- Note: root "/" removed — index.html now redirects to /hipnoterapi-bandung,
-       which is the canonical homepage (see entry below). -->
+  <url>
+    <loc>https://hipnoterapibandung.web.id</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
   <url>
-    <loc>https://hipnoterapibandung.web.id/tentang-praktisi</loc>
-    <lastmod>2026-07-08</lastmod>
+    <loc>https://hipnoterapibandung.web.id/blog/apa-itu-hipnoterapi-mitos-vs-fakta</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/apa-yang-terjadi-saat-sesi-hipnoterapi-pertama</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/berapa-kali-sesi-hipnoterapi-dibutuhkan</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/cara-mengatasi-cemas-berlebihan-overthinking</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/cara-mengatasi-kecemasan-berlebihan</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/cara-menyembuhkan-luka-batin</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/hipnoterapi-aman-atau-tidak</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/hipnoterapi-untuk-depresi</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/hipnoterapi-vs-psikolog</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/hipnoterapi-vs-psikolog-vs-psikiater</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/inner-child-adalah</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/insomnia-kronis-hipnoterapi-tidur-nyenyak</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/kenapa-warga-batununggal-mencari-terapi-kecemasan</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/kenapa-warga-majalaya-memendam-tekanan-emosional</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/kenapa-warga-ujungberung-kelelahan-emosional</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/kisah-klien-inner-child-pola-hubungan</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/kisah-klien-kecemasan-trauma-emosional</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/kisah-klien-pulih-kecemasan-sosial</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/luka-batin-adalah</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/luka-batin-akibat-orang-tua</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/luka-batin-berapa-lama-sembuh</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/luka-batin-dalam-hubungan</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/luka-batin-dan-kecemasan</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/luka-batin-vs-sakit-hati</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/mitos-hipnoterapi</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/penyebab-insomnia-kronis</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/studi-kasus-luka-batin</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/studi-kasus-panic-attack-hipnoterapi</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/studi-kasus-trauma-healing</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/studi-kasus-trauma-hipnoterapi</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/tahapan-trauma-healing</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/tanda-luka-batin</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/tanda-luka-batin-sembuh</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/tanda-trauma-belum-sembuh</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/tanda-trauma-healing-berhasil</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/trauma-healing-adalah</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/trauma-healing-bandung</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/trauma-healing-berapa-lama</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/trauma-healing-hipnoterapi</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/trauma-healing-mandiri</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/trauma-healing-vs-move-on</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/trauma-masa-kecil-healing</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/blog/trauma-masa-kecil-kapan-ke-hipnoterapis</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/cara-kerja</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/cek-bawah-sadar</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/cek-beban-emosional</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/cek-innerchild</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/cek-kecemasan</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/cek-mental-block-rezeki</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/cek-sakit-hati</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-antapani</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-arcamanik</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-batununggal</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-buah-batu</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-cibiru</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-cicendo</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-cimahi</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-inner-child</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-insomnia</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-kecemasan</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-lembang</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-majalaya</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-overthinking</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-padalarang</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-rancaekek</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-regol</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-sukajadi</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-terdekat</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-trauma</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hipnoterapi-ujungberung</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/hypnocare</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hipnoterapibandung.web.id/kontak</loc>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://hipnoterapibandung.web.id/paket-investasi</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://hipnoterapibandung.web.id/cara-kerja</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://hipnoterapibandung.web.id/panduan-hipnoterapi</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://hipnoterapibandung.web.id/testimoni</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hipnoterapibandung.web.id/kontak</loc>
-    <lastmod>2026-07-08</lastmod>
+    <loc>https://hipnoterapibandung.web.id/quiz-hipnoterapi</loc>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- ── SEO: HALAMAN LOKASI ── -->
-  <url>
-    <loc>https://hipnoterapibandung.web.id/hipnoterapi-bandung</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://hipnoterapibandung.web.id/hipnoterapi-cimahi</loc>
-    <lastmod>2026-07-08</lastmod>
+    <loc>https://hipnoterapibandung.web.id/screening-sugestivitas-darma</loc>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://hipnoterapibandung.web.id/hipnoterapi-lembang</loc>
-    <lastmod>2026-07-08</lastmod>
+    <loc>https://hipnoterapibandung.web.id/tentang-praktisi</loc>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hipnoterapibandung.web.id/hipnoterapi-terdekat</loc>
-    <lastmod>2026-07-08</lastmod>
+    <loc>https://hipnoterapibandung.web.id/testimoni</loc>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- ── SEO: HALAMAN KONDISI ── -->
-  <url>
-    <loc>https://hipnoterapibandung.web.id/hipnoterapi-kecemasan</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://hipnoterapibandung.web.id/hipnoterapi-trauma</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://hipnoterapibandung.web.id/hipnoterapi-inner-child</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://hipnoterapibandung.web.id/hipnoterapi-insomnia</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://hipnoterapibandung.web.id/hipnoterapi-overthinking</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
 
 </urlset>

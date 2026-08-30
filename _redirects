@@ -1,2 +1,12 @@
 # Redirect old root/index to the main SEO homepage
 /  /hipnoterapi-bandung  301!
+
+# Consolidate near-duplicate topic pages (keyword cannibalization fix)
+/berapa-sesi-hipnoterapi-yang-dibutuhkan.html  /blog/berapa-kali-sesi-hipnoterapi-dibutuhkan  301!
+/blog/berapa-sesi-hipnoterapi                  /blog/berapa-kali-sesi-hipnoterapi-dibutuhkan  301!
+
+/apakah-hipnoterapi-aman-penjelasan-klinis.html  /blog/hipnoterapi-aman-atau-tidak  301!
+/blog/apakah-hipnoterapi-aman-penjelasan-klinis  /blog/hipnoterapi-aman-atau-tidak  301!
+
+/overthinking-terus-menerus.html            /blog/cara-mengatasi-cemas-berlebihan-overthinking  301!
+/blog/overthinking-tanda-cara-mengatasi     /blog/cara-mengatasi-cemas-berlebihan-overthinking  301!
