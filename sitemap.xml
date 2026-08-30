@@ -10,12 +10,8 @@
        ============================================ -->
 
   <!-- ── CORE PAGES ── -->
-  <url>
-    <loc>https://hipnoterapibandung.web.id/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <!-- Note: root "/" removed — index.html now redirects to /hipnoterapi-bandung,
+       which is the canonical homepage (see entry below). -->
 
   <url>
     <loc>https://hipnoterapibandung.web.id/tentang-praktisi</loc>
